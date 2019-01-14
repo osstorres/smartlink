@@ -68,7 +68,7 @@ class Eventos(models.Model):
 
     TIPO_EVENTO_CHOICES=(( 'Desayuno empresarial','Desayuno empresarial'),('Taller','Taller')
     ,('Sesión de ideas que transforman','Sesión de ideas que transforman'),('Sesión informativa Incubadora','Sesión informativa Incubadora')
-    ,('Sesión informativa Enlace+','Sesión informativa Enlace+'),('','')
+    ,('Sesión informativa Enlace+','Sesión informativa Enlace+')
     ,('Hackaton','Hackaton'),('Conferencia','Conferencia')
     ,('Seminario','Seminario'),('Enlace Day','Enlace Day')
     ,('BootCamp','BootCamp'),('Convocatoria','Convocatoria')
