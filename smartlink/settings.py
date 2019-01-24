@@ -25,14 +25,14 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1']
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1','osieltorres.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    
-    
+
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'db_smartlink',
-        'USER' : 'root',
-        'PASSWORD' : 'root',
-        'HOST': '',
+        'NAME': 'osieltorres$db_smartlink',
+        'USER' : 'osieltorres',
+        'PASSWORD' : 'rootsmartlink',
+        'HOST': 'osieltorres.mysql.pythonanywhere-services.com',
         'PORT' : '',
     }
 }
@@ -128,3 +128,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/osieltorres/smartlink/static'

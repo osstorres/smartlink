@@ -21,14 +21,14 @@ class eventos_tabla(ImportExportModelAdmin):
         formats = (
                 base_formats.CSV,
                 base_formats.XLS,
-                
+
             )
         return [f for f in formats if f().can_export()]
     def get_import_formats(self):
         formats = (
                 base_formats.CSV,
                 base_formats.XLS,
-                
+
             )
         return [f for f in formats if f().can_import()]
 
@@ -37,13 +37,14 @@ class eventos_tabla(ImportExportModelAdmin):
 
 class clientes_tabla(ImportExportModelAdmin):
     list_display = ('nombre','apellidos','correo','telefono','sexo','ocupacion','estado','relacion_tec')
-    list_filter  = ('ocupacion','relacion_tec') 
+    list_filter  = ('ocupacion','relacion_tec')
+
 
     def get_export_formats(self):
         formats = (
                 base_formats.CSV,
                 base_formats.XLS,
-                
+
             )
 
         return [f for f in formats if f().can_export()]
@@ -51,7 +52,7 @@ class clientes_tabla(ImportExportModelAdmin):
         formats = (
                 base_formats.CSV,
                 base_formats.XLS,
-                
+
             )
         return [f for f in formats if f().can_import()]
 

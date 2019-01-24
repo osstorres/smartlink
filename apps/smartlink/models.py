@@ -5,9 +5,9 @@ from django.db import models
 from multiselectfield import MultiSelectField
 
 
-#TABLAS PARA LA BASE DE DATOS 
+#TABLAS PARA LA BASE DE DATOS
 #SE CREAN DOS TABLAS (USUARIOS Y EVENTOS)
-#RELACIÓN ES MUCHOS A MUCHOS 
+#RELACIÓN ES MUCHOS A MUCHOS
 # Create your models here.
 
 
@@ -35,7 +35,7 @@ class Clientes(models.Model):
     ('Morelos','Morelos'),('Nayarit','Nayarit'),('Nuevo León','Nuevo León'),('Oaxaca','Oaxaca'),
     ('Puebla','Puebla'),('Querétaro','Querétaro'),('Quintana Roo','Quintana Roo'),('San Luis Potosí','San Luis Potosí'),
     ('Sinaloa','Sinaloa'),('Sonora','Sonora'),('Tabasco','Tabasco'),('Tamaulipas','Tamaulipas'),
-    ('Tlaxcala','Tlaxcala'),('Veracruz','Veracruz'),('Yucatán','Yucatán'),('Zacatecas','Zacatecas'),    
+    ('Tlaxcala','Tlaxcala'),('Veracruz','Veracruz'),('Yucatán','Yucatán'),('Zacatecas','Zacatecas'),
     )
     RELACION_TEC_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
     ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
@@ -56,11 +56,12 @@ class Clientes(models.Model):
     ciudad =  models.CharField(max_length = 200)
     relacion_tec =  models.CharField(max_length = 200,choices=RELACION_TEC_CHOICES)
 
+
     class  Meta:
         verbose_name_plural = "Clientes"
     def __str__(self):
         return self.nombre
-        
+
 
 
 
@@ -76,7 +77,7 @@ class Eventos(models.Model):
     TIPO_INVITACION_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
     ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
 
-    
+
     id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length = 300, default=None)
     imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos/%Y/%m/%D/")
