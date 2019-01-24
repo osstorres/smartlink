@@ -3,15 +3,17 @@ from __future__ import unicode_literals
 
 from django.contrib import admin
 from .models import *
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User, Group, AbstractUser
 from django.contrib.admin.models import LogEntry
 from import_export.admin import ImportExportModelAdmin
 from import_export.formats import base_formats
+from django.contrib.auth.models import Permission
+
 
 
 #LogEntry.objects.all().delete()
 
-admin.site.unregister(Group)
+#admin.site.unregister(Group)
 # Register your models here.
 class eventos_tabla(ImportExportModelAdmin):
     date_hierarchy = 'fecha'
@@ -36,7 +38,7 @@ class eventos_tabla(ImportExportModelAdmin):
 
 
 class clientes_tabla(ImportExportModelAdmin):
-    list_display = ('nombre','apellidos','correo','telefono','sexo','ocupacion','estado','relacion_tec')
+    list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec')
     list_filter  = ('ocupacion','relacion_tec')
 
 
