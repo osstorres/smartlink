@@ -133,3 +133,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/osieltorres/smartlink/static'
+
+
+STATICFILES_DIRS = ( os.path.join('static'), )
