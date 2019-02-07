@@ -8,8 +8,14 @@ from django.contrib.admin.models import LogEntry
 from import_export.admin import ImportExportModelAdmin
 from import_export.formats import base_formats
 from django.contrib.auth.models import Permission
-
-
+from django.core.mail import send_mail
+def send_email(self, request, queryset):
+    for i in queryset:
+        if i.correo:
+            send_mail('Invitacion a ', 'Cuerpo de mensaje', 'from@example.com',[i.correo], fail_silently=False)
+        else:
+            self.message_user(request, "Correos enviados!") 
+send_email.short_description = "Enviar correo a los usuarios seleccionados"
 
 #LogEntry.objects.all().delete()
 
@@ -37,9 +43,14 @@ class eventos_tabla(ImportExportModelAdmin):
 
 
 
+
+ 
+
 class clientes_tabla(ImportExportModelAdmin):
     list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec')
     list_filter  = ('ocupacion','relacion_tec')
+    actions =[send_email,]
+
 
 
     def get_export_formats(self):
@@ -57,11 +68,6 @@ class clientes_tabla(ImportExportModelAdmin):
 
             )
         return [f for f in formats if f().can_import()]
-
-
-
-
-
 
 admin.site.register(Clientes,clientes_tabla)
 admin.site.register(Eventos,eventos_tabla)

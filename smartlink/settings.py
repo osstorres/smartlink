@@ -25,6 +25,15 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'osiel781@gmail.com'
+EMAIL_HOST_PASSWORD = 'dawson31'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
 ALLOWED_HOSTS =  ['localhost', '127.0.0.1','osieltorres.pythonanywhere.com']
 
 
