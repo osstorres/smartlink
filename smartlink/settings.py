@@ -26,8 +26,8 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
 DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'osiel781@gmail.com'
-EMAIL_HOST_PASSWORD = 'dawson31'
+EMAIL_HOST_USER = 'smartlinkenv@gmail.com'
+EMAIL_HOST_PASSWORD = 'smartlinK98'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
