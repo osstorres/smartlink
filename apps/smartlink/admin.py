@@ -9,6 +9,19 @@ from import_export.admin import ImportExportModelAdmin
 from import_export.formats import base_formats
 from django.contrib.auth.models import Permission
 from django.core.mail import send_mail
+from django import forms
+
+
+
+
+class SendEmailForm(forms.Form):
+    subject = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': ('Subject')}))
+    message = forms.CharField(widget=forms.Textarea)
+    users = forms.ModelMultipleChoiceField(label="To",
+                                           queryset=User.objects.all(),
+                                           widget=forms.SelectMultiple())
+
 def send_email(self, request, queryset):
     for i in queryset:
         if i.correo:
