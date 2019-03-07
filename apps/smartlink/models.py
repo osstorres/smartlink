@@ -56,6 +56,7 @@ class Clientes(models.Model):
     estado =  models.CharField(max_length = 200,choices=ESTADO_CHOICES)
     ciudad =  models.CharField(max_length = 200)
     relacion_tec =  models.CharField(max_length = 200,choices=RELACION_TEC_CHOICES)
+    password = models.CharField(max_length=200, default=None)
 
 
     class  Meta:

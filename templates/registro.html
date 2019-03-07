@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+		<head>
+				<meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, initial-scale=1.0">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+				<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+<!-- Core Stylesheet -->
+<link href="{% static 'style.css' %}" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'registrocss/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+<!-- Responsive CSS -->
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+				<link rel="stylesheet" type="text/css" href="{% static 'registrocss/css/style.css'%}">
+				
+				<title>Registro</title>
+			</head>
+			
+			<body>
+			
+				<div class="section">
+					<div class="video-container">
+						<div class="color-overlay"></div>
+						<video autoplay loop muted id="video-background" >
+							<source src="{% static 'registrocss/video.mp4'%}" type="video/mp4">
+						</video>
+					</div>
+			
+				</div>
+				
+				<section class="signup">
+						<!-- <img src="images/signup-bg.jpg" alt=""> -->
+						<div class="container">
+							<div class="signup-content">
+								
+								<form method="POST" action="" id="signup-form" class="signup-form">
+										
+									{% csrf_token %}
+									{{form.as_p}}
+									
+									<button disabled="true" type="submit"  style="cursor:pointer;" id="registroboton"> Registrarse</button>
+
+							
+
+									<div class="form-group">
+										<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
+										<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="#" class="term-service">Terminos y condiciones</a></label>
+									</div>
+									
+								</form>
+								<p class="loginhere">
+								Ya tienes cuenta?<a href="/login" class="loginhere-link"> Inicia sesión aquí</a>
+								</p>
+							</div>
+						</div>
+					</section>
+			
+			
+			</body>
+			<script type="text/javascript">
+				function validate() {
+					if (document.getElementById('agree-term').checked) {
+						document.getElementById("registroboton").disabled = false;
+					} else {
+						document.getElementById("registroboton").disabled = true;
+					}
+				}
+				</script>
+			</html>

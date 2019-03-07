@@ -7,6 +7,9 @@ from django import *
 from django.utils.translation import gettext as _
 # Create your views here.
 from django import forms
+from .forms import *
+
+from django.contrib.auth import authenticate, login, logout
 
 def home(request):
 
@@ -16,10 +19,17 @@ def home(request):
     return render(request,'index.html',context)
 
 def login(request):
-
     return render(request,'login.html')
 
+def registro(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = ClienteForm()
 
+    return render(request,'registro.html',{'form':form})
 
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))

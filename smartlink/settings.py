@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from django.core.urlresolvers import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -35,7 +36,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 ALLOWED_HOSTS =  ['localhost', '127.0.0.1','osieltorres.pythonanywhere.com']
+ 
 
+ 
 
 # Application definition
 
@@ -96,7 +99,7 @@ DATABASES = {
         #'USER' : 'osieltorres',
         'USER' : 'root',
         #'PASSWORD' : 'rootsmartlink',
-        'PASSWORD' : 'root',
+        'PASSWORD' : '',
         #'HOST': 'osieltorres.mysql.pythonanywhere-services.com',
         'HOST' : '',
         'PORT' : '',
@@ -145,3 +148,4 @@ STATIC_ROOT = '/home/osieltorres/smartlink/static'
 
 
 STATICFILES_DIRS = ( os.path.join('static'), )
+
