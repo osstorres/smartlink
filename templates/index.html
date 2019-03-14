@@ -44,16 +44,23 @@
 
                             <!-- Menu Area -->
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            
+                    
+
+
 
                             <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
+                                    {% if user.is_authenticated %}
                                 <ul class="navbar-nav animated" id="nav">
                                     <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#eventos_para_mi">Mis eventos</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Mi historial</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesion</a></li>
                                     <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
                                 </ul>
+                             
                                 <!-- Search Form Area Start -->
                                 <!--<div class="search-form-area animated">
                                     <form action="#" method="post">
@@ -66,10 +73,21 @@
                                     <a href="#" id="search-btn"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></a>
                                 </div>-->
                                 <!-- Login/Register btn -->
+                                {% else %}
+                                <ul class="navbar-nav animated" id="nav">
+                                        <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
+                                     
+                                        <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
+                               
+                                        <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+                                    </ul>
+
                                 <div class="login-register-btn">
                                     <a href="login" >Iniciar sesion</a>
-                                    <a href="registro">/ Registrarme</a>
+                                    <a href="register">/ Registrarme</a>
                                 </div>
+                                {% endif %}
                             </div>
                         </nav>
                     </div>

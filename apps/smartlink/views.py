@@ -10,6 +10,84 @@ from django import forms
 from .forms import *
 
 from django.contrib.auth import authenticate, login, logout
+from django.urls import reverse_lazy
+
+######################ACCOUNTS##############################
+
+
+
+
+
+from django.shortcuts import render, redirect , HttpResponse
+from django.urls import reverse
+
+
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+#from django.http import HttpResponse
+
+
+
+
+def register(request):
+    if request.method =='POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+               form.save()
+               return redirect('login')
+               #return reverse('login')
+               #return reverse_lazy('login')
+               #return redirect(reverse('smartlink:login'))
+               #return render(request,'accounts/login.html')
+        else:
+               return HttpResponse('You have an error while filling the form , dont forget to set more complex password')    
+    else:
+        form = RegistrationForm()
+
+        args = {'form': form}
+        return render(request, 'accounts/reg_form.html', args)
+
+def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+    return render(request, 'accounts/profile.html', args)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('smartlink:view_profile'))
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'accounts/edit_profile.html', args)
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(data=request.POST, user=request.user)
+
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request, form.user)
+            return redirect(reverse('smartlink:view_profile'))
+        else:
+            return redirect(reverse('smartlink:change_password'))
+    else:
+        form = PasswordChangeForm(user=request.user)
+
+        args = {'form': form}
+        return render(request, 'accounts/change_password.html', args)
+
+
+#############################################################
+
 
 def home(request):
 
@@ -18,18 +96,16 @@ def home(request):
     context = {'eventos_smartlink':eventos_smartlink}
     return render(request,'index.html',context)
 
-def login(request):
-    return render(request,'login.html')
+def logout(request):
 
-def registro(request):
-    if request.method == 'POST':
-        form = ClienteForm(request.POST)
-        if form.is_valid():
-            form.save()
-    else:
-        form = ClienteForm()
 
-    return render(request,'registro.html',{'form':form})
+    eventos_smartlink= Eventos.objects.all()
+    context = {'eventos_smartlink':eventos_smartlink}
+    return render(request,'logout.html',context)
+
+
+
+
 
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))

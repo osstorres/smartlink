@@ -145,7 +145,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/osieltorres/smartlink/static'
+MEDIA_URL = '/media/'
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_EXEMPT_URLS = (
 
-
+)
 STATICFILES_DIRS = ( os.path.join('static'), )
 
