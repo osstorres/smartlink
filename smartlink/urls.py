@@ -25,7 +25,7 @@ from apps.smartlink import views
 
 from django.urls import reverse_lazy
 from django.contrib.auth.views import (
-    login,
+    
     LoginView,
     LogoutView,
     PasswordResetView,
