@@ -56,7 +56,7 @@
                                     <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
 
                                    
-                                    <li class="nav-item"><a class="nav-link" href="#eventos_para_mi">Mis eventos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#eventos_para_mi">Eventos para mi</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Mi historial</a></li>
                                     <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesion</a></li>
@@ -172,6 +172,7 @@
     </section>
     <!-- ***** Service Area End ***** -->
 
+    {% if user.is_authenticated %}
     <!-- ***** Clients Area Start ***** -->
     <section class="mosh-clients-area section_padding_100 clearfix" id="eventos_para_mi">
         <div class="container">
@@ -179,7 +180,7 @@
                 <div class="col-12">
                     <div class="section-heading text-center">
                         <p>Eventos</p>
-                        <h2>Mis eventos</h2>
+                        <h2>Eventos para mi</h2>
                     </div>
                 </div>
                 <div class="col-12">
@@ -194,6 +195,7 @@
             </div>
         </div>
     </section>
+    
     <!-- ***** Clients Area End ***** -->
 
     <!-- ***** Features Area Start *****
@@ -278,6 +280,7 @@
     
     <!-- ***** Service Area End ***** -->
 
+    {% else %}
     <!-- ***** Portfolio Area Start ***** -->
     <section class="mosh-portfolio-area section_padding_100_0 clearfix" id="eventos_generales">
         <div class="container">
@@ -386,7 +389,7 @@
         </div>
     </section>
     <!-- ***** Portfolio Area End ***** -->
-
+    {% endif %}
     <!-- ***** Workflow Area Start ***** -->
     <section class="mosh-workflow-area section_padding_100_0 clearfix">
         <div class="container">
