@@ -42,7 +42,7 @@ def register(request):
                #return redirect(reverse('smartlink:login'))
                #return render(request,'accounts/login.html')
         else:
-               return HttpResponse('You have an error while filling the form , dont forget to set more complex password')    
+               return HttpResponse('-------------Pagina de error de contraseña-----------')    
     else:
         form = RegistrationForm()
 
@@ -106,7 +106,7 @@ def logout(request):
 
 
 
-
+'''
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))
     message = forms.CharField(widget=forms.Textarea)
@@ -128,3 +128,4 @@ class SendUserEmails( FormView):
         user_message = '{0} users emailed successfully!'.format(form.cleaned_data['users'].count())
         messages.success(self.request, user_message)
         return super(SendUserEmails, self).form_valid(form)
+'''

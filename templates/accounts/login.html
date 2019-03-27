@@ -41,6 +41,35 @@
 </head>
 <body>
 	
+	<form method="post" class="login100-form validate-form">
+
+		
+		<span class="login100-form-title p-b-34">
+			Inicio de sesión
+		</span>
+		{% csrf_token %}
+		{{ form.as_p }}
+		
+		
+
+		<div class="container-login100-form-btn">
+
+			<input class="btn btn-primary" type="submit" value="ingresar">
+
+		</div>
+
+
+
+		<div class="w-full text-center">
+				¿ Aún no tienes cuenta ? 
+			<a href="/register" class="txt3">
+				Registrate
+			</a>
+		</div>
+
+	</form>
+
+
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">

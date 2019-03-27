@@ -12,7 +12,10 @@ class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
+    
 
+
+    
     class Meta:
         model = User
         fields = (
@@ -47,7 +50,7 @@ class EditProfileForm(UserChangeForm):
             'password'
         )
 
-
+'''
 class ClienteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ClienteForm, self).__init__(*args, **kwargs)
@@ -88,3 +91,4 @@ class ClienteForm(forms.ModelForm):
     'password',
 
         ]
+'''

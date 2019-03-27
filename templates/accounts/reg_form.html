@@ -36,14 +36,30 @@
 						<div class="container">
 							<div class="signup-content">
 
-
-                                    <form method="post">
+									<!--
+								<form method="POST" action="" id="signup-form" class="signup-form">
                                             {% csrf_token %}
-                                            {{ form.as_p }}
-                                            <button type="submit">Submit</button>
+											{{ form.as_p }}
+											<div class="form-group">
+												<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
+												<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="#" class="term-service">Terminos y condiciones</a></label>
+											</div>
+											<button disabled="true" type="submit"  style="cursor:pointer;" id="registroboton"> Registrarse</button>
+											
                                         </form>
 
-                                        
+									-->
+
+
+									<form method="post" novalidate>
+										{% csrf_token %}
+										{{ form.as_p }}
+										<div class="form-group">
+											<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
+											<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="#" class="term-service">Terminos y condiciones</a></label>
+										</div>
+										<button disabled="true" type="submit" style="cursor:pointer;" id="registroboton" class="btn btn-primary">Registrarme</button>
+									  </form>
 								<!--
 								<form method="POST"  id="signup-form" class="signup-form">
                                     {% csrf_token %}

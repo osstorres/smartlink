@@ -46,7 +46,7 @@ urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
     url(r'^$',views.home,name="index"),
-    url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
+    #url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
     #url(r'^login/$',views.login,name="login"),
     #url(r'^registro/$',views.registro,name="registro"),
     url(r'^login/$', LoginView.as_view(template_name='accounts/login.html'), name='login'),
