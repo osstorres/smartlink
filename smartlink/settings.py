@@ -98,7 +98,7 @@ DATABASES = {
         #'NAME' : 'db_smartlink',
         'USER' : 'smartlinktec',
         #'USER' : 'root',
-        'PASSWORD' : 'f#Au5Dd5/K.w\7Pr',
+        'PASSWORD' : 'B7VgAxaVFpX3pXg5',
         #'PASSWORD' : 'root',
         'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
         #'HOST' : '',
