@@ -35,7 +35,7 @@ EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-ALLOWED_HOSTS =  ['localhost', '127.0.0.1','osieltorres.pythonanywhere.com']
+ALLOWED_HOSTS =  ['localhost', '127.0.0.1','smartlinktec.pythonanywhere.com']
  
 
  
@@ -94,13 +94,13 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'osieltorres$db_smartlink',
+        'NAME': 'smartlinktec$db_smartlink',
         #'NAME' : 'db_smartlink',
-        'USER' : 'osieltorres',
+        'USER' : 'smartlinktec',
         #'USER' : 'root',
-        'PASSWORD' : 'rootsmartlink',
+        'PASSWORD' : 'f#Au5Dd5/K.w\7Pr',
         #'PASSWORD' : 'root',
-        'HOST': 'osieltorres.mysql.pythonanywhere-services.com',
+        'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
         #'HOST' : '',
         'PORT' : '',
     }
@@ -144,7 +144,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/osieltorres/smartlink/static'
+STATIC_ROOT = '	/home/smartlinktec/smartlink/media'
 MEDIA_URL = '/media/'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
