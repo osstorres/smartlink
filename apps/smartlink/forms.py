@@ -12,8 +12,9 @@ class RegistrationForm(UserCreationForm):
     email = forms.EmailField(required=True)
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
-    
 
+    
+   
 
     
     class Meta:
@@ -24,8 +25,12 @@ class RegistrationForm(UserCreationForm):
             'last_name',
             'email',
             'password1',
-            'password2'
+            'password2',
+ 
         )
+   
+
+    
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
@@ -50,7 +55,7 @@ class EditProfileForm(UserChangeForm):
             'password'
         )
 
-'''
+
 class ClienteForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(ClienteForm, self).__init__(*args, **kwargs)
@@ -69,7 +74,7 @@ class ClienteForm(forms.ModelForm):
     estado = forms.ChoiceField(choices = ESTADO_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
     ciudad = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     relacion_tec = forms.ChoiceField(choices = RELACION_TEC_CHOICES, widget=forms.Select(attrs={'class':'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+   
 
 
     class Meta:
@@ -88,7 +93,6 @@ class ClienteForm(forms.ModelForm):
     'estado',
     'ciudad',
     'relacion_tec',
-    'password',
+   
 
         ]
-'''

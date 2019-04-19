@@ -8,7 +8,6 @@ from django.utils.translation import gettext as _
 # Create your views here.
 from django import forms
 from .forms import *
-
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 
@@ -42,7 +41,10 @@ def register(request):
                #return redirect(reverse('smartlink:login'))
                #return render(request,'accounts/login.html')
         else:
-               return HttpResponse('-------------Pagina de error de contraseña-----------')    
+            form = RegistrationForm()
+            args = {'form': form}
+            return render(request, 'accounts/reg_form.html', args)
+   
     else:
         form = RegistrationForm()
 
@@ -63,7 +65,7 @@ def edit_profile(request):
 
         if form.is_valid():
             form.save()
-            return redirect(reverse('smartlink:view_profile'))
+            return redirect('view_profile')
     else:
         form = EditProfileForm(instance=request.user)
         args = {'form': form}

@@ -59,6 +59,7 @@
                                     <li class="nav-item"><a class="nav-link" href="#eventos_para_mi">Eventos para mi</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Mi historial</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="profile">Mi perfil</a></li>
                                     <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesion</a></li>
                                     <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
@@ -255,14 +256,14 @@
 
     <!-- ***** Service Area Start ***** -->
 
-
- 
-
-
-    <section class="mosh-more-services-area d-sm-flex clearfix">
+<section class="mosh-more-services-area d-sm-flex clearfix" style="            overflow-y: scroll;">
+            
             {% for ev in eventos_smartlink %} 
-        <div class="single-more-service-area">
+            
+        <div class="single-more-service-area" >
+                
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s">
+                    
                 <img src="{% static 'img/core-img/trophy.png' %}" alt="">
                 
                 
@@ -270,14 +271,15 @@
                 <h4>{{ev.titulo}}</h4>
                 
                 <p>{{ev.descripcion}}</p>
-            </div>
+            
+        </div>
         </div>
       
         
         {% endfor %}
     
     </section>
-    
+
     <!-- ***** Service Area End ***** -->
 
     {% else %}
@@ -306,89 +308,104 @@
             </div>
         </div>
 -->
+
+
+        
+        
         <div class="mosh-portfolio">
             <!-- Single gallery Item Start -->
+            {% for eventos_generales in eventos_smartlink %} 
             <div class="single_gallery_item gd">
                 <img src="{% static 'img/portfolio-img/1.jpg' %}" alt="">
+                
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                        <h4>Enero</h4>
+                        
+                        <h4>{{eventos_generales.titulo}}</h4>
                         <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+            {% endfor %}
+    <!-- 
+         
             <div class="single_gallery_item bi">
                 <img src="{% static 'img/portfolio-img/2.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item gd bi">
                 <img src="{% static 'img/portfolio-img/3.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item pho">
                 <img src="{% static 'img/portfolio-img/4.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item pho">
                 <img src="{% static 'img/portfolio-img/5.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item wd pc">
                 <img src="{% static 'img/portfolio-img/6.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item wd">
                 <img src="{% static 'img/portfolio-img/7.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
-            <!-- Single gallery Item Start -->
+         
             <div class="single_gallery_item pc">
                 <img src="{% static 'img/portfolio-img/8.jpg' %}" alt="">
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
-                            <h4>Enero</h4>
+                            <h4>{{ev.titulo}}</h4>
                             <a href="#">Más información</a>
                     </div>
                 </div>
             </div>
+            -->
         </div>
+        
     </section>
+
+    
+
+   
     <!-- ***** Portfolio Area End ***** -->
     
     <!-- ***** Workflow Area Start ***** -->
