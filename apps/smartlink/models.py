@@ -60,8 +60,11 @@ class Clientes(models.Model):
     estado =  models.CharField(max_length = 200,choices=ESTADO_CHOICES,default=None,null=True)
     ciudad =  models.CharField(max_length = 200,default=None,null=True)
     relacion_tec =  models.CharField(max_length = 200,choices=RELACION_TEC_CHOICES,default=None,null=True)
+
+
     
 
+    
 
     
 
@@ -154,7 +157,7 @@ class Eventos(models.Model):
 
     id = models.AutoField(primary_key=True)
     titulo = models.CharField(max_length = 300, default=None)
-    imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos/%Y/%m/%D/")
+    imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos")
     fecha = models.DateTimeField()
     descripcion = models.TextField()
     ponentes =   models.CharField(max_length = 300)

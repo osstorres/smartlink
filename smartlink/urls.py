@@ -45,6 +45,7 @@ app_name = "smartlink"
 urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
+    url(r'^evento/(?P<pk>\d+)/$',views.evento,name="evento"),
     url(r'^$',views.home,name="index"),
     #url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
     #url(r'^login/$',views.login,name="login"),
@@ -76,4 +77,4 @@ urlpatterns = [
 
 
 
-]
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -316,13 +316,19 @@
             <!-- Single gallery Item Start -->
             {% for eventos_generales in eventos_smartlink %} 
             <div class="single_gallery_item gd">
-                <img src="{% static 'img/portfolio-img/1.jpg' %}" alt="">
+                <img src="{{eventos_generales.imagen_portada.url}}">
                 
                 <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
                     <div class="port-hover-text text-center">
                         
                         <h4>{{eventos_generales.titulo}}</h4>
-                        <a href="#">Más información</a>
+                       
+                        
+                        <a href="{% url 'evento' pk=eventos_generales.id %}"> 
+                            Más información
+
+                        </a>
+                        
                     </div>
                 </div>
             </div>

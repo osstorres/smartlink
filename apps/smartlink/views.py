@@ -96,6 +96,8 @@ def home(request):
 
     eventos_smartlink= Eventos.objects.all()
     context = {'eventos_smartlink':eventos_smartlink}
+
+
     return render(request,'index.html',context)
 
 def logout(request):
@@ -106,8 +108,11 @@ def logout(request):
     return render(request,'logout.html',context)
 
 
-
-
+def evento(request, pk=None):
+    if pk:
+        evento = Eventos.objects.get(pk=pk)
+    args = {'evento': evento}
+    return render(request, 'evento.html', args)
 '''
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))

@@ -94,14 +94,14 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'smartlinktec$db_smartlink',
-        #'NAME' : 'db_smartlink',
-        'USER' : 'smartlinktec',
-        #'USER' : 'root',
-        'PASSWORD' : 'B7VgAxaVFpX3pXg5',
-        #'PASSWORD' : 'root',
-        'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
-        #'HOST' : '',
+        #'NAME': 'smartlinktec$db_smartlink',
+        'NAME' : 'db_smartlink',
+        #'USER' : 'smartlinktec',
+        'USER' : 'root',
+        #'PASSWORD' : 'B7VgAxaVFpX3pXg5',
+        'PASSWORD' : 'root',
+        #'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
+        'HOST' : '',
         'PORT' : '',
     }
 }
@@ -144,8 +144,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATIC_ROOT = '	/home/smartlinktec/smartlink/media'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (
