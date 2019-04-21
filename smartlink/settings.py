@@ -147,7 +147,7 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = '/home/smartlinktec/smartlink/static'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/home/smartlinktec/smartlink/media'
+MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (
