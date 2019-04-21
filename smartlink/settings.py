@@ -94,14 +94,14 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'smartlinktec$db_smartlink',
-        'NAME' : 'db_smartlink',
-        #'USER' : 'smartlinktec',
-        'USER' : 'root',
-        #'PASSWORD' : 'B7VgAxaVFpX3pXg5',
-        'PASSWORD' : 'root',
-        #'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
-        'HOST' : '',
+        'NAME': 'smartlinktec$db_smartlink',
+        #'NAME' : 'db_smartlink',
+        'USER' : 'smartlinktec',
+        #'USER' : 'root',
+        'PASSWORD' : 'B7VgAxaVFpX3pXg5',
+        #'PASSWORD' : 'root',
+        'HOST': 'smartlinktec.mysql.pythonanywhere-services.com',
+        #'HOST' : '',
         'PORT' : '',
     }
 }
