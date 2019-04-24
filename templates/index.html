@@ -77,6 +77,13 @@
                                     <a href="#" id="search-btn"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></a>
                                 </div>-->
                                 <!-- Login/Register btn -->
+                                {% if user.is_staff %}
+                                <li class="nav-item"><a class="nav-link" href="admin">Panel de administración</a></li>
+                                {% else %}
+                                
+                                {% endif %}
+
+
                                 {% else %}
                                 <ul class="navbar-nav animated" id="nav">
                                         <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
@@ -409,8 +416,7 @@
         
     </section>
 
-    
-
+ 
    
     <!-- ***** Portfolio Area End ***** -->
     

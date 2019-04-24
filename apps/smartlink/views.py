@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 
 
 
-
+from django.contrib import messages
 from django.shortcuts import render, redirect , HttpResponse
 from django.urls import reverse
 
@@ -41,15 +41,16 @@ def register(request):
                #return redirect(reverse('smartlink:login'))
                #return render(request,'accounts/login.html')
         else:
+            
             form = RegistrationForm()
             args = {'form': form}
             return render(request, 'accounts/reg_form.html', args)
    
     else:
+        
         form = RegistrationForm()
-
         args = {'form': form}
-        return render(request, 'accounts/reg_form.html', args)
+        return render(request, 'accounts/reg_form.html',args)
 
 def view_profile(request, pk=None):
     if pk:
@@ -78,9 +79,10 @@ def change_password(request):
         if form.is_valid():
             form.save()
             update_session_auth_hash(request, form.user)
-            return redirect(reverse('smartlink:view_profile'))
+
+            return render(request,'accounts/profile.html')
         else:
-            return redirect(reverse('smartlink:change_password'))
+            return render(request,'accounts/change_password.html')
     else:
         form = PasswordChangeForm(user=request.user)
 
@@ -95,6 +97,7 @@ def home(request):
 
 
     eventos_smartlink= Eventos.objects.all()
+
     context = {'eventos_smartlink':eventos_smartlink}
 
 
@@ -111,8 +114,12 @@ def logout(request):
 def evento(request, pk=None):
     if pk:
         evento = Eventos.objects.get(pk=pk)
+
     args = {'evento': evento}
     return render(request, 'evento.html', args)
+
+
+
 '''
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))

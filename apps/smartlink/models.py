@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from multiselectfield import MultiSelectField
-
+from tinymce import models as tinymce_models
 
 #TABLAS PARA LA BASE DE DATOS
 #SE CREAN DOS TABLAS (USUARIOS Y EVENTOS)
@@ -15,6 +15,34 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
+
+class Eventos(models.Model):
+
+    TIPO_EVENTO_CHOICES=(( 'Desayuno empresarial','Desayuno empresarial'),('Taller','Taller')
+    ,('Sesión de ideas que transforman','Sesión de ideas que transforman'),('Sesión informativa Incubadora','Sesión informativa Incubadora')
+    ,('Sesión informativa Enlace+','Sesión informativa Enlace+')
+    ,('Hackaton','Hackaton'),('Conferencia','Conferencia')
+    ,('Seminario','Seminario'),('Enlace Day','Enlace Day')
+    ,('BootCamp','BootCamp'),('Convocatoria','Convocatoria')
+    ,('Innovation & Bussines day','Innovation & Bussines day'),('OTRO','OTRO'),)
+    TIPO_INVITACION_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
+    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
+
+
+    id = models.AutoField(primary_key=True)
+    titulo = models.CharField(max_length = 300, default=None)
+    imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos")
+    fecha = models.DateTimeField()
+    descripcion = models.TextField()
+    ponentes =   models.CharField(max_length = 300)
+    tipo_invitacion = MultiSelectField(choices = TIPO_INVITACION_CHOICES)
+    tipo_evento = models.CharField(max_length = 200,choices=TIPO_EVENTO_CHOICES)
+    concepto_pago = models.CharField(max_length = 300)
+    
+    class  Meta:
+        verbose_name_plural = "Eventos"
+    def __str__(self):
+        return self.titulo
 
 class Clientes(models.Model):
     SEXO_CHOICES = (('M','M'),('F','F'),)
@@ -48,6 +76,11 @@ class Clientes(models.Model):
 
     on_delete=models.DO_NOTHING
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True, blank=True)
+    
+    ############
+    eventos = models.ManyToManyField(Eventos)
+    
+    ############
     nombre = models.CharField(max_length = 200,default=None,blank=True,null=True)
     apellidos = models.CharField(max_length = 200,default=None,null=True)
     correo = models.EmailField(default=None,null=True)
@@ -60,6 +93,9 @@ class Clientes(models.Model):
     estado =  models.CharField(max_length = 200,choices=ESTADO_CHOICES,default=None,null=True)
     ciudad =  models.CharField(max_length = 200,default=None,null=True)
     relacion_tec =  models.CharField(max_length = 200,choices=RELACION_TEC_CHOICES,default=None,null=True)
+    #correo = tinymce_models.HTMLField()
+    
+
 
 
     
@@ -140,32 +176,3 @@ class Clientes(models.Model):
         return self.nombre
 
 '''
-
-
-class Eventos(models.Model):
-
-    TIPO_EVENTO_CHOICES=(( 'Desayuno empresarial','Desayuno empresarial'),('Taller','Taller')
-    ,('Sesión de ideas que transforman','Sesión de ideas que transforman'),('Sesión informativa Incubadora','Sesión informativa Incubadora')
-    ,('Sesión informativa Enlace+','Sesión informativa Enlace+')
-    ,('Hackaton','Hackaton'),('Conferencia','Conferencia')
-    ,('Seminario','Seminario'),('Enlace Day','Enlace Day')
-    ,('BootCamp','BootCamp'),('Convocatoria','Convocatoria')
-    ,('Innovation & Bussines day','Innovation & Bussines day'),('OTRO','OTRO'),)
-    TIPO_INVITACION_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
-    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
-
-
-    id = models.AutoField(primary_key=True)
-    titulo = models.CharField(max_length = 300, default=None)
-    imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos")
-    fecha = models.DateTimeField()
-    descripcion = models.TextField()
-    ponentes =   models.CharField(max_length = 300)
-    tipo_invitacion = MultiSelectField(choices = TIPO_INVITACION_CHOICES)
-    tipo_evento = models.CharField(max_length = 200,choices=TIPO_EVENTO_CHOICES)
-    concepto_pago = models.CharField(max_length = 300)
-
-    class  Meta:
-        verbose_name_plural = "Eventos"
-    def __str__(self):
-        return self.titulo

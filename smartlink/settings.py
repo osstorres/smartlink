@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'apps.smartlink',
     'import_export',
     'multiselectfield',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -105,7 +106,18 @@ DATABASES = {
         'PORT' : '',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME' : 'db_smartlink',
+        'USER' : 'root',
+        'PASSWORD' : 'root',
+        'HOST' : '',
+        'PORT' : '',
+    }
+}
+'''
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -139,7 +151,29 @@ USE_L10N = True
 
 USE_TZ = True
 
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 360,
+    'width': 1120,
+    'cleanup_on_startup': True,
+    'theme': "advanced",
+    'custom_undo_redo_levels': 20,
+    'selector': 'textarea',
 
+  
+    'toolbar1': '''
+            fullscreen preview bold italic underline | fontselect,
+            fontsizeselect  | forecolor backcolor | alignleft alignright |
+            aligncenter alignjustify | indent outdent | bullist numlist table |
+            | link image media | codesample |
+            ''',
+    'toolbar2': '''
+            visualblocks visualchars |
+            charmap hr pagebreak nonbreaking anchor |  code |
+            ''',
+    'contextmenu': 'formats | link image',
+    'menubar': True,
+    'statusbar': True,
+    }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -147,7 +181,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = '/home/smartlinktec/smartlink/static'
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (
