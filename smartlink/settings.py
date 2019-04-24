@@ -189,5 +189,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (
 
 )
-STATICFILES_DIRS = ( os.path.join('static'), )
+#STATICFILES_DIRS = ( os.path.join('static'), )
 

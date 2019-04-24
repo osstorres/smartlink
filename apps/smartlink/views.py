@@ -55,8 +55,11 @@ def register(request):
 def view_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
+        
+        
     else:
         user = request.user
+        
     args = {'user': user}
     return render(request, 'accounts/profile.html', args)
 
@@ -98,10 +101,23 @@ def home(request):
 
     eventos_smartlink= Eventos.objects.all()
 
+
     context = {'eventos_smartlink':eventos_smartlink}
 
 
     return render(request,'index.html',context)
+
+def historial(request):
+    clienteseventos = Clientes.objects.all()
+
+
+    
+    
+
+    context = {'clienteseventos':clienteseventos}
+
+
+    return render(request,'historial.html',context)
 
 def logout(request):
 
@@ -117,6 +133,22 @@ def evento(request, pk=None):
 
     args = {'evento': evento}
     return render(request, 'evento.html', args)
+
+
+def agregareventoacliente(request, pk=None):
+    if pk:
+        evento = Eventos.objects.get(pk=pk)
+        
+        
+        #Clientes.eventos.add(evento)
+
+        
+        clienteseventos = Clientes.objects.get()
+        
+        
+
+    args = {'clienteseventos': clienteseventos}
+    return render(request, 'evento.html', clienteseventos)
 
 
 
