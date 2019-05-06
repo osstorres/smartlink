@@ -109,6 +109,7 @@
                 <form method="post">
                     {% csrf_token %}
                     {{ form.as_p }}
+                    {{profile_form.as_p}}
                     <button type="submit">Actualizar</button>
                 </form>
                 <br>
@@ -137,17 +138,20 @@
         </div>
     </section>-->
     <!-- ***** CTA Area End ***** -->
-
+ <!-- ***** Workflow Area Start ***** -->
+ 
+    
     <!-- ***** Footer Area Start ***** -->
+    <!--
     <footer class="footer-area clearfix">
-        <!-- Top Fotter Area -->
+        
         <div class="top-footer-area section_padding_100_0">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget mb-100">
                             <P>LOGO SMARTLINK</P>>
-                            <!-- LOGOOO  <a href="#" class="mb-50 d-block"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>-->
+                             LOGOOO  <a href="#" class="mb-50 d-block"><img src="{% static 'img/core-img/logo.png' %}" alt=""></a>
                             <p>DESCRIPCIOÓN</p>
                         </div>
                     </div>
@@ -163,7 +167,7 @@
                             </ul>
                         </div>
                     </div>
-                    <!--
+                    
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget mb-100">
                             <h5>Blog</h5>
@@ -193,7 +197,7 @@
                             </div>
                         </div>
                     </div>
-                    -->
+                    
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget mb-100">
                             <h5>Informacion de contacto</h5>
@@ -220,16 +224,16 @@
                 </div>
             </div>
         </div>
-        <!-- Fotter Bottom Area -->
+
         <div class="footer-bottom-area">
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 h-100">
                         <div class="footer-bottom-content h-100 d-md-flex justify-content-between align-items-center">
                             <div class="copyright-text">
-                                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                <p>
 <a>TERMINIOS & CONDICIONES DE SERVICIO</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
 </p>
                             </div>
                             <div class="footer-social-info">
@@ -246,6 +250,8 @@
             </div>
         </div>
     </footer>
+
+-->
     <!-- ***** Footer Area End ***** -->
 
     <!-- jQuery-2.2.4 js -->

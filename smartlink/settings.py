@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'import_export',
     'multiselectfield',
     'tinymce',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -176,7 +177,7 @@ TINYMCE_DEFAULT_CONFIG = {
     }
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_URL = '/static/'
 
 STATIC_ROOT = '/home/smartlinktec/smartlink/static'
@@ -189,5 +190,5 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (
 
 )
-#STATICFILES_DIRS = ( os.path.join('static'), )
+STATICFILES_DIRS = ( os.path.join('static'), )
 

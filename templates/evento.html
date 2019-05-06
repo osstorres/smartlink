@@ -105,20 +105,22 @@
     
 <div class="container">
     <h1 style="color:white">{{evento.titulo}}</h1>
-    <img src="{{evento.imagen_portada.url}}">
+    <!--<img src="{{evento.imagen_portada.url}}">-->
     <div class="workflow-content ml-15">
         <h4></h4>
             
             <h4>Descripcion: {{ evento.descripcion }}</h4>
             <h4>Fecha: {{ evento.fecha }}</h4>
             <h4>Ponentes: {{ evento.ponentes }}</h4>
-            <h4>MIS EVENTOS : {{clienteseventos.estado}}</h4>
-            <button>REGISTRARME</button>
+            {% for cv in user.clientes.eventos.all %}
+            <h4>MIS EVENTOS : {{cv.titulo}} {{cv.fecha}}</h4>
+            {% endfor %}
+            
         
           
                         
-                        <a href="{% url 'agregareventoacliente' pk=evento.id %}"> 
-                            Registrame papusito
+                        <a href="{% url 'historial' pk=evento.id %}"> 
+                            Registrame </a>
 
     </div>
     

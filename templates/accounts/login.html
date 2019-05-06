@@ -2,7 +2,7 @@
 
 
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,7 @@
 			Inicio de sesión
 		</span>
 		{% csrf_token %}
-		{{ form.as_p }}
+		{{ form|crispy }}
 		
 		
 

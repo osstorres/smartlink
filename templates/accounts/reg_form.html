@@ -1,5 +1,8 @@
 
 {% load static %}
+{% load crispy_forms_tags %}
+
+
 <!DOCTYPE html>
 <html>
 
@@ -32,56 +35,35 @@
 				</div>
 				
 				<section class="signup">
-						<!-- <img src="images/signup-bg.jpg" alt=""> -->
+				
 						<div class="container">
 							<div class="signup-content">
 
-									<!--
-								<form method="POST" action="" id="signup-form" class="signup-form">
-                                            {% csrf_token %}
-											{{ form.as_p }}
-											<div class="form-group">
-												<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
-												<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="#" class="term-service">Terminos y condiciones</a></label>
-											</div>
-											<button disabled="true" type="submit"  style="cursor:pointer;" id="registroboton"> Registrarse</button>
-											
-                                        </form>
-
-									-->
+							
 
 
 									<form method="post" >
 										{% csrf_token %}
 								
-										{{ form.as_p }}
+										{{ form|crispy }}
 								
 									
 										<div class="form-group">
 											<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
 											<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="https://tec.mx/es/aviso-de-privacidad-para-participantes-y-expositores-congresos-y-simposiums" target="_blank" class="term-service">Terminos y condiciones</a></label>
 										</div>
-										<button disabled="true" type="submit" style="cursor:pointer;" id="registroboton" class="btn btn-primary">Registrarme</button>
-									  </form>
-								<!--
-								<form method="POST"  id="signup-form" class="signup-form">
-                                    {% csrf_token %}
-                                    {{ form.as_p }}
-									
-									<button disabled="true" type="submit"  style="cursor:pointer;" id="registroboton"> Registrarse</button>
 
-							
+										<div class="row justify-content-center">
+												<button disabled="true" type="submit" style="cursor:pointer;" id="registroboton" class="btn btn-primary">Registrarme</button>
+											  </div>
+										
 
-									<div class="form-group">
-										<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
-										<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="#" class="term-service">Terminos y condiciones</a></label>
-									</div>
-									
-								</form>-->
-							
+						
 								<p class="loginhere">
-								Ya tienes cuenta?<a href="/login" class="loginhere-link"> Inicia sesión aquí</a>
-								</p>
+										Ya tienes cuenta?<a href="/login" class="loginhere-link"> Inicia sesión aquí</a>
+										</p>
+									  </form>
+							
 							</div>
 						</div>
 					</section>
@@ -97,4 +79,4 @@
 					}
 				}
 				</script>
-			</html>
+</html>

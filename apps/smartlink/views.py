@@ -33,8 +33,10 @@ from django.contrib.auth.decorators import login_required
 def register(request):
     if request.method =='POST':
         form = RegistrationForm(request.POST)
-        if form.is_valid():
+        
+        if form.is_valid() and profile_form.is_valid():
                form.save()
+               
                return redirect('login')
                #return reverse('login')
                #return reverse_lazy('login')
@@ -43,12 +45,14 @@ def register(request):
         else:
             
             form = RegistrationForm()
+            
             args = {'form': form}
             return render(request, 'accounts/reg_form.html', args)
    
     else:
         
         form = RegistrationForm()
+        
         args = {'form': form}
         return render(request, 'accounts/reg_form.html',args)
 
@@ -66,13 +70,16 @@ def view_profile(request, pk=None):
 def edit_profile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
+        profile_form = ClienteForm(request.POST, instance=request.user.clientes)
 
         if form.is_valid():
             form.save()
+            profile_form.save()
             return redirect('view_profile')
     else:
         form = EditProfileForm(instance=request.user)
-        args = {'form': form}
+        profile_form = ClienteForm(instance=request.user.clientes)
+        args = {'form': form,'profile_form':profile_form}
         return render(request, 'accounts/edit_profile.html', args)
 
 def change_password(request):
@@ -107,17 +114,18 @@ def home(request):
 
     return render(request,'index.html',context)
 
-def historial(request):
-    clienteseventos = Clientes.objects.all()
+def historial(request,pk=None):
+    if pk:
+        eventosss = Eventos.objects.get(pk=pk)
+        print("MI PK :"+pk) 
+        
+        
+        
+        #Clientes.eventos.add(evento)
+        User.clientes.eventos.add(eventosss)
+        User.clientes.save()
 
-
-    
-    
-
-    context = {'clienteseventos':clienteseventos}
-
-
-    return render(request,'historial.html',context)
+    return render(request, 'historial.html')
 
 def logout(request):
 
@@ -130,6 +138,7 @@ def logout(request):
 def evento(request, pk=None):
     if pk:
         evento = Eventos.objects.get(pk=pk)
+        
 
     args = {'evento': evento}
     return render(request, 'evento.html', args)
@@ -137,18 +146,16 @@ def evento(request, pk=None):
 
 def agregareventoacliente(request, pk=None):
     if pk:
-        evento = Eventos.objects.get(pk=pk)
+        eventosss = Eventos.objects.get(pk=pk)
+        print("MI PK :"+pk) 
+        
         
         
         #Clientes.eventos.add(evento)
+        User.clientes.eventos.add(eventosss)
+        User.clientes.save()
 
-        
-        clienteseventos = Clientes.objects.get()
-        
-        
-
-    args = {'clienteseventos': clienteseventos}
-    return render(request, 'evento.html', clienteseventos)
+    return render(request, 'historial.html')
 
 
 

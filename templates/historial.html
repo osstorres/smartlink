@@ -154,6 +154,9 @@
     </div>
     
     
+    {% for cv in user.clientes.eventos.all %}
+    <h4>MIS EVENTOS : {{cv.titulo}} {{cv.fecha}}</h4>
+    {% endfor %}
     
 
 </div>
