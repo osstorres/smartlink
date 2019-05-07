@@ -105,7 +105,7 @@
     
 <div class="container">
     <h1 style="color:white">{{evento.titulo}}</h1>
-    <!--<img src="{{evento.imagen_portada.url}}">-->
+    <img src="{{evento.imagen_portada.url}}">
     <div class="workflow-content ml-15">
         <h4></h4>
             
@@ -113,14 +113,12 @@
             <h4>Fecha: {{ evento.fecha }}</h4>
             <h4>Ponentes: {{ evento.ponentes }}</h4>
             {% for cv in user.clientes.eventos.all %}
-            <h4>MIS EVENTOS : {{cv.titulo}} {{cv.fecha}}</h4>
+            <!-- <h4>MIS EVENTOS : {{cv.titulo}} {{cv.fecha}}</h4>-->
             {% endfor %}
             
         
           
-                        
-                        <a href="{% url 'historial' pk=evento.id %}"> 
-                            Registrame </a>
+                      
 
     </div>
     
@@ -129,10 +127,36 @@
 
 </div>
 
-
-           
+ 
        
     </section>
+
+    
+    <section class="mosh-service-area clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div >
+                            <!-- Single Service Area -->
+                            <div class="single-service-area text-center">
+                                <h2>  
+                                        <a href="{% url 'historial' pk=evento.id %}"> 
+                                            Registrarme </a></h2>
+                                
+                                <h4></h4>
+                    
+                            </div>
+                          
+                    
+                        </div>
+                    </div>
+                    <!-- Discover More btn 
+                    <div class="col-12 text-center mt-100">
+                        <a href="#" class="btn mosh-btn">Discover More</a>
+                    </div>-->
+                </div>
+            </div>
+        </section>
     <!-- ***** Welcome Area End ***** -->
 
     
