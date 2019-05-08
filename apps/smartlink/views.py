@@ -37,6 +37,7 @@ def register(request):
         if form.is_valid(): #and profile_form.is_valid():
                form.save()
                
+               
                return redirect('login')
                #return reverse('login')
                #return reverse_lazy('login')

@@ -17,7 +17,7 @@ from django import forms
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec','get_eventos')
+    list_display = ('nombre','apellidos','telefono_celular','sexo','ocupacion','estado','relacion_tec','get_eventos')
     list_filter  = ('ocupacion','relacion_tec')
 
     def user_info(self, obj):

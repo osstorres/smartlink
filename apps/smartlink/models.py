@@ -85,7 +85,7 @@ class Clientes(models.Model):
     ############
     nombre = models.CharField(max_length = 200,default=None,blank=True,null=True)
     apellidos = models.CharField(max_length = 200,default=None,null=True)
-    correo = models.EmailField(default=None,null=True)
+    #correo = models.EmailField(default=None,null=True)
     telefono_celular =models.CharField(max_length = 200,default=None,blank=True,null=True)
     telefono_oficina = models.CharField(max_length = 200,default=None,blank=True,null=True)
     sexo = models.CharField(max_length = 200,choices=SEXO_CHOICES,default=None,null=True)
