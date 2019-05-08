@@ -56,7 +56,7 @@ send_email.short_description = "Enviar correo a los usuarios seleccionados"
 # Register your models here.
 class eventos_tabla(ImportExportModelAdmin):
     date_hierarchy = 'fecha'
-    list_display = ('titulo','fecha','tipo_evento','tipo_invitacion')
+    list_display = ('titulo','fecha','tipo_evento','tipo_invitacion','get_registros')
     list_filter  = ('tipo_evento','fecha')
     def get_export_formats(self):
         formats = (

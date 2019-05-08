@@ -145,6 +145,35 @@ def agregareventoacliente(request, pk=None):
         #context = {'eventosss':eventosss}
     request.user.clientes.eventos.add(evento.id)
     print("-----------------------ESTA COSITA-----------------------------")
+    evento.registros.add(request.user.id)
+    
+    print("-----------------------ESTA COSITA-----------------------------")
+
+    
+
+        
+        
+        #User.empresa.add(eventosss)
+        #User.clientes.save()
+
+    return render(request, 'historial.html')
+
+
+def quitarevento(request, pk=None):
+    print("-----------------------ESTA COSITA-----------------------------")
+    print(request.user.clientes.eventos)
+    print(evento.id)
+    print("-----------------------ESTA COSITA-----------------------------")
+    if pk:
+        evento = Eventos.objects.get(pk=pk)
+    print("-----------------------ESTA COSITA-----------------------------")
+    print(request.user.clientes.eventos)
+    print(evento.id)
+    print("-----------------------ESTA COSITA-----------------------------")
+        #user = User.objects.get(pku=pku)  
+        #context = {'eventosss':eventosss}
+    request.user.clientes.eventos.remove(evento.id)
+    print("-----------------------ESTA COSITA-----------------------------")
     print(request.user.clientes.eventos)
     print(evento.id)
     print("-----------------------ESTA COSITA-----------------------------")
@@ -154,6 +183,7 @@ def agregareventoacliente(request, pk=None):
         #User.clientes.save()
 
     return render(request, 'historial.html')
+
 
 
 

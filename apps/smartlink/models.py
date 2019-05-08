@@ -40,6 +40,14 @@ class Eventos(models.Model):
     tipo_invitacion = models.CharField(max_length = 200,choices=TIPO_INVITACION_CHOICES,default=None)
     tipo_evento = models.CharField(max_length = 200,choices=TIPO_EVENTO_CHOICES)
     concepto_pago = models.CharField(max_length = 300)
+    registros = models.ManyToManyField(User, blank = True)
+    
+    
+    def get_registros(self):
+        return " , ".join([str(p) for p in self.registros.all()])
+    get_registros.short_description = "registros"
+    
+
     
     class  Meta:
         verbose_name_plural = "Eventos"
