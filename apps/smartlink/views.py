@@ -34,7 +34,7 @@ def register(request):
     if request.method =='POST':
         form = RegistrationForm(request.POST)
         
-        if form.is_valid() and profile_form.is_valid():
+        if form.is_valid(): #and profile_form.is_valid():
                form.save()
                
                return redirect('login')
@@ -114,16 +114,8 @@ def home(request):
 
     return render(request,'index.html',context)
 
-def historial(request,pk=None):
-    if pk:
-        eventosss = Eventos.objects.get(pk=pk)
-        print("MI PK :"+pk) 
-        
-        
-        
-        #Clientes.eventos.add(evento)
-        User.clientes.eventos.add(eventosss)
-        User.clientes.save()
+def historial(request):
+    
 
     return render(request, 'historial.html')
 
@@ -146,14 +138,19 @@ def evento(request, pk=None):
 
 def agregareventoacliente(request, pk=None):
     if pk:
-        eventosss = Eventos.objects.get(pk=pk)
-        print("MI PK :"+pk) 
+        evento = Eventos.objects.get(pk=pk)
+    
+        #user = User.objects.get(pku=pku)  
+        #context = {'eventosss':eventosss}
+    request.user.clientes.eventos.add(evento.id)
+    print("-----------------------ESTA COSITA-----------------------------")
+    print(request.user.clientes.eventos)
+    print(evento.id)
+    print("-----------------------ESTA COSITA-----------------------------")
         
         
-        
-        #Clientes.eventos.add(evento)
-        User.clientes.eventos.add(eventosss)
-        User.clientes.save()
+        #User.empresa.add(eventosss)
+        #User.clientes.save()
 
     return render(request, 'historial.html')
 

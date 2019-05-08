@@ -46,7 +46,7 @@ urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
     url(r'^evento/(?P<pk>\d+)/$',views.evento,name="evento"),
-    url(r'^historial/(?P<pk>\d+)/$',views.historial,name="historial"),
+    url(r'^historial/(?P<pk>\d+)/$',views.agregareventoacliente,name="agregareventoacliente"),
     
     url(r'^$',views.home,name="index"),
     #url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
@@ -56,7 +56,7 @@ urlpatterns = [
     # LoginView.as_view(template_name='accounts/login.html'), name='login'),
     #url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('login')), name='logout'),
     url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('index')), name='logout'),
-    #url(r'^historial/$', views.historial, name='historial'),
+    url(r'^historial/$', views.historial, name='historial'),
     #url(r'^login/$', login, {'template_name': 'accounts/login.html'}, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^register/$', views.register, name='register'),

@@ -26,7 +26,7 @@ class Eventos(models.Model):
     ,('BootCamp','BootCamp'),('Convocatoria','Convocatoria')
     ,('Innovation & Bussines day','Innovation & Bussines day'),('OTRO','OTRO'),)
     TIPO_INVITACION_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
-    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
+    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papa/Mama Tec','Papa/Mama Tec'),('General','General'),)
 
 
     id = models.AutoField(primary_key=True)
@@ -34,8 +34,10 @@ class Eventos(models.Model):
     imagen_portada = models.ImageField(null=False,upload_to = "portadas_eventos")
     fecha = models.DateTimeField()
     descripcion = models.TextField()
+    lugar = models.CharField(max_length = 300, default=None)
     ponentes =   models.CharField(max_length = 300)
-    tipo_invitacion = MultiSelectField(choices = TIPO_INVITACION_CHOICES)
+    #tipo_invitacion = MultiSelectField(choices = TIPO_INVITACION_CHOICES,default=None)
+    tipo_invitacion = models.CharField(max_length = 200,choices=TIPO_INVITACION_CHOICES,default=None)
     tipo_evento = models.CharField(max_length = 200,choices=TIPO_EVENTO_CHOICES)
     concepto_pago = models.CharField(max_length = 300)
     
@@ -70,7 +72,7 @@ class Clientes(models.Model):
     ('Tlaxcala','Tlaxcala'),('Veracruz','Veracruz'),('Yucatán','Yucatán'),('Zacatecas','Zacatecas'),
     )
     RELACION_TEC_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
-    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papá/Mamá Tec','Papá/Mamá Tec'),('Ninguna','Ninguna'),)
+    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papa/Mama Tec','Papa/Mama Tec'),('Ninguna','Ninguna'),)
 
 
 
@@ -78,7 +80,7 @@ class Clientes(models.Model):
     user = models.OneToOneField(User,on_delete=models.CASCADE,null=True, blank=True)
     
     ############
-    eventos = models.ManyToManyField(Eventos)
+    eventos = models.ManyToManyField(Eventos, blank = True)
     
     ############
     nombre = models.CharField(max_length = 200,default=None,blank=True,null=True)
@@ -99,7 +101,8 @@ class Clientes(models.Model):
 
 
     
-
+    def get_eventos(self):
+        return " , ".join([str(p) for p in self.eventos.all()])
     
 
     

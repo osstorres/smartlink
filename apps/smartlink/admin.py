@@ -17,7 +17,7 @@ from django import forms
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec')
+    list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec','get_eventos')
     list_filter  = ('ocupacion','relacion_tec')
 
     def user_info(self, obj):
@@ -56,7 +56,7 @@ send_email.short_description = "Enviar correo a los usuarios seleccionados"
 # Register your models here.
 class eventos_tabla(ImportExportModelAdmin):
     date_hierarchy = 'fecha'
-    list_display = ('titulo','fecha','tipo_evento')
+    list_display = ('titulo','fecha','tipo_evento','tipo_invitacion')
     list_filter  = ('tipo_evento','fecha')
     def get_export_formats(self):
         formats = (
@@ -104,5 +104,6 @@ class clientes_tabla(ImportExportModelAdmin):
 
 #admin.site.register(Clientes,clientes_tabla)
 admin.site.register(Eventos,eventos_tabla)
+
 
 admin.site.index_title = ""

@@ -77,7 +77,7 @@
                                     </div>-->
                                     <!-- Login/Register btn -->
                                     {% if user.is_staff %}
-                                    <li class="nav-item"><a class="nav-link" href="admin">Panel de administración</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/admin">Panel de administración</a></li>
                                     {% else %}
                                     
                                     {% endif %}
@@ -114,36 +114,30 @@
 <div class="container">
     <div class="workflow-content ml-15"></div>
 
-*******************TABLA DE PRUEBA********************
+    <h3 style="color:white">PROXIMOS EVENTOS</h3>
             <table class="table table-striped">
                     <thead>
                       <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Evento</th>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Lugar</th>
+                        
+                        <th scope="col" style="color:white">Evento</th>
+                        <th scope="col" style="color:white">Fecha</th>
+                        <th scope="col" style="color:white">Lugar</th>
                       </tr>
                     </thead>
+                    {% for cv in user.clientes.eventos.all %}
+                   
                     <tbody>
+
                       <tr>
-                        <th scope="row">1</th>
-                        <td>Desayuno</td>
-                        <td>20/sep/2019 a las 12:00 pm</td>
-                        <td>Cuernavaca</td>
+                        
+                        <td style="color:white">{{cv.titulo}}</td>
+                        <td style="color:white"> {{cv.fecha}}</td>
+                        <td style="color:white"> {{cv.lugar}}</td>
                       </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Desayuno</td>
-                        <td>20/sep/2019 a las 12:00 pm</td>
-                        <td>Cuernavaca</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>Desayuno</td>
-                        <td>20/sep/2019 a las 12:00 pm</td>
-                        <td>Cuernavaca</td>
-                      </tr>
+                     
                     </tbody>
+                   
+                    {% endfor %}
                   </table>
 
 
@@ -154,9 +148,10 @@
     </div>
     
     
-    {% for cv in user.clientes.eventos.all %}
-    <h4>MIS EVENTOS : {{cv.titulo}} {{cv.fecha}}</h4>
-    {% endfor %}
+    
+    <h4></h4>
+    
+    
     
 
 </div>
