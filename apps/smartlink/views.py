@@ -11,6 +11,9 @@ from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 
+from django.core.mail import send_mail
+from django.template.loader import get_template
+
 ######################ACCOUNTS##############################
 
 
@@ -33,9 +36,11 @@ from django.contrib.auth.decorators import login_required
 def register(request):
     if request.method =='POST':
         form = RegistrationForm(request.POST)
+        #profile_form = ClienteForm(request.POST)
         
         if form.is_valid(): #and profile_form.is_valid():
                form.save()
+           
                
                
                return redirect('login')
@@ -46,6 +51,7 @@ def register(request):
         else:
             
             form = RegistrationForm()
+         
             
             args = {'form': form}
             return render(request, 'accounts/reg_form.html', args)
@@ -53,7 +59,7 @@ def register(request):
     else:
         
         form = RegistrationForm()
-        
+       
         args = {'form': form}
         return render(request, 'accounts/reg_form.html',args)
 
@@ -73,7 +79,8 @@ def edit_profile(request):
         form = EditProfileForm(request.POST, instance=request.user)
         profile_form = ClienteForm(request.POST, instance=request.user.clientes)
 
-        if form.is_valid():
+        if form.is_valid() or profile_form.is_valid():
+         
             form.save()
             profile_form.save()
             return redirect('view_profile')
@@ -148,6 +155,8 @@ def agregareventoacliente(request, pk=None):
     evento.registros.add(request.user.id)
     
     print("-----------------------ESTA COSITA-----------------------------")
+    cuerpo_mensaje = "REGISTRO EXITOSO AL EVENTO : "+ evento.titulo +"\nFECHA :" +str(evento.fecha) + "\nLUGAR: "+evento.lugar+"\n\nNO responda a este mensaje, es un envío automático\n\n"
+    send_mail('Confirmación evento',cuerpo_mensaje,'SMART LINK',[request.user.email],fail_silently=False)
 
     
 
@@ -157,6 +166,55 @@ def agregareventoacliente(request, pk=None):
         #User.clientes.save()
 
     return render(request, 'historial.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def quitarevento(request, pk=None):

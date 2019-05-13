@@ -28,7 +28,7 @@ DEBUG = True
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'smartlinkenv@gmail.com'
-EMAIL_HOST_PASSWORD = 'smartlinK98'
+EMAIL_HOST_PASSWORD = 'SmartlinK98'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-#'''
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -118,7 +118,7 @@ DATABASES = {
         'PORT' : '',
     }
 }
-'''
+#'''
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -183,8 +183,8 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = '/home/smartlinktec/smartlink/static'
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
+#MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (

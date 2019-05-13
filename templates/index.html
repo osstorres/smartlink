@@ -181,6 +181,51 @@
     <!-- ***** Service Area End ***** -->
 
     {% if user.is_authenticated %}
+
+    
+    
+
+    
+    <button type="button" style="cursor:pointer; margin:0 auto; display: block; margin-bottom: 50px;"  class="btn btn-primary" data-toggle="modal" data-target="#myModal">Registrarme</button>
+
+    <!-- Modal -->
+    
+          {% if user.clientes.relacion_tec %}
+         
+                        {% else %}
+                        <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                              
+                                  <!-- Modal content-->
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      
+                                      <h4 class="modal-title">AVISO</h4>
+                                    </div>
+                        <div class="modal-body">
+                                <p style="color:black"> Para poder continuar navegando por favor completa tu perfil</p>
+                              </div>
+                              <div class="modal-footer">
+                    
+                                   
+                                    <form>
+                    
+                                            <input type="button"  style="cursor:pointer" class="btn btn-success" value="Completar perfil" onclick="window.location.href='/profile/edit_profile/'" />
+                                            
+                                            </form> 
+               
+            
+              
+          
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+
+
+    {% endif %}
     <!-- ***** Clients Area Start ***** -->
     <section class="mosh-clients-area section_padding_100 clearfix" id="eventos_para_mi">
         <div class="container">
@@ -783,6 +828,11 @@
     <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
     <!-- Active js -->
     <script type="text/javascript" src="{% static 'js/active.js' %}"></script>
+    <script type="text/javascript">
+        $(window).on('load',function(){
+            $('#myModal').modal('show');
+        });
+    </script>
 </body>
 
 </html>

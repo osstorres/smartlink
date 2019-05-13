@@ -62,7 +62,7 @@ class ClienteForm(forms.ModelForm):
     
 
 
-    nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}), )
+    nombre = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}) )
     apellidos = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
     #correo = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
     telefono_celular = forms.CharField(widget=forms.NumberInput(attrs={'class':'form-control'}))
