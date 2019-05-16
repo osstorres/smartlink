@@ -15,7 +15,6 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
-
 class Eventos(models.Model):
 
     TIPO_EVENTO_CHOICES=(( 'Desayuno empresarial','Desayuno empresarial'),('Taller','Taller')
@@ -93,7 +92,7 @@ class Clientes(models.Model):
     ############
     nombre = models.CharField(max_length = 200,default=None,blank=True,null=True)
     apellidos = models.CharField(max_length = 200,default=None,null=True)
-    #correo = models.EmailField(default=None,null=True)
+    correo = models.EmailField(default=None,null=True)
     telefono_celular =models.CharField(max_length = 200,default=None,blank=True,null=True)
     telefono_oficina = models.CharField(max_length = 200,default=None,blank=True,null=True)
     sexo = models.CharField(max_length = 200,choices=SEXO_CHOICES,default=None,null=True)

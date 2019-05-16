@@ -28,8 +28,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-#from django.http import HttpResponse
-
+from django.http import HttpResponseRedirect
+from django.core.mail import EmailMultiAlternatives
 
 
 
@@ -182,41 +182,6 @@ def agregareventoacliente(request, pk=None):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def quitarevento(request, pk=None):
     print("-----------------------ESTA COSITA-----------------------------")
     print(request.user.clientes.eventos)
@@ -244,27 +209,39 @@ def quitarevento(request, pk=None):
 
 
 
-
 '''
+
 class SendEmailForm(forms.Form):
     subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Subject')}))
     message = forms.CharField(widget=forms.Textarea)
     users = forms.ModelMultipleChoiceField(label="To",
                                            queryset=Clientes.objects.all(),
                                            widget=forms.SelectMultiple())
+'''
 
-
-class SendUserEmails( FormView):
+class SendUserEmails(FormView):
     template_name = 'send_email.html'
     form_class = SendEmailForm
-#    success_url = reverse_lazy('admin:users_user_changelist')
+    #success_url = reverse_lazy('admin:users_user_changelist')
 
     def form_valid(self, form):
         users = form.cleaned_data['users']
         subject = form.cleaned_data['subject']
         message = form.cleaned_data['message']
-        email_users.delay(users, subject, message)
-        user_message = '{0} users emailed successfully!'.format(form.cleaned_data['users'].count())
-        messages.success(self.request, user_message)
-        return super(SendUserEmails, self).form_valid(form)
-'''
+        html_content = message
+        print("COSITA BIEN HECHA VERDAD DE DIOS : ")
+        for x in users:
+            print(x.correo)
+            #send_mail(subject, message,'smartlink',[x.correo],fail_silently=False)
+
+
+            subject, from_email, to = 'hello', 'from@example.com', x.correo
+            text_content = 'This is an important message.'
+            
+            msg = EmailMultiAlternatives(subject, text_content, from_email, [to])
+            msg.attach_alternative(html_content,"text/html")
+            msg.send()
+        
+        
+        #send_mail('Confirmación evento',cuerpo_mensaje,'SMART LINK',[request.user.email],fail_silently=False)
+        return HttpResponseRedirect('/admin')

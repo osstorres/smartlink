@@ -10,13 +10,14 @@ from import_export.formats import base_formats
 from django.contrib.auth.models import Permission
 from django.core.mail import send_mail
 from django import forms
-
+from .forms import *
+from django.shortcuts import render
 ############
 
 
 
 
-class UserProfileAdmin(admin.ModelAdmin):
+class UserProfileAdmin(ImportExportModelAdmin):
     list_display = ('nombre','apellidos','telefono_celular','sexo','ocupacion','estado','relacion_tec','get_eventos')
     list_filter  = ('ocupacion','relacion_tec')
 
@@ -30,8 +31,42 @@ class UserProfileAdmin(admin.ModelAdmin):
 
     user_info.short_description = 'Info'
 
+
+    actions =['send_email']
+
+
+
+    def get_export_formats(self):
+        formats = (
+                base_formats.CSV,
+                base_formats.XLS,
+
+            )
+
+        return [f for f in formats if f().can_export()]
+    def get_import_formats(self):
+        formats = (
+                base_formats.CSV,
+                base_formats.XLS,
+
+            )
+        return [f for f in formats if f().can_import()]
+
+
+    def send_email(self, request, queryset):
+        form = SendEmailForm(initial={'users': queryset})
+        
+        return render(request, 'send_email.html', {'form': form})
+
 admin.site.register(Clientes, UserProfileAdmin)
 ############
+
+
+
+
+
+'''
+
 
 
 class SendEmailForm(forms.Form):
@@ -49,7 +84,7 @@ def send_email(self, request, queryset):
         else:
             self.message_user(request, "Correos enviados!") 
 send_email.short_description = "Enviar correo a los usuarios seleccionados"
-
+'''
 #LogEntry.objects.all().delete()
 
 #admin.site.unregister(Group)
@@ -82,7 +117,7 @@ class eventos_tabla(ImportExportModelAdmin):
 class clientes_tabla(ImportExportModelAdmin):
     list_display = ('nombre','apellidos','correo','telefono_celular','sexo','ocupacion','estado','relacion_tec')
     list_filter  = ('ocupacion','relacion_tec')
-    actions =[send_email,]
+    actions =['send_email']
 
 
 
@@ -101,6 +136,11 @@ class clientes_tabla(ImportExportModelAdmin):
 
             )
         return [f for f in formats if f().can_import()]
+
+
+    def send_email(self, request, queryset):
+        form = SendEmailForm(initial={'users': queryset})
+        return render(request, 'users/send_email.html', {'form': form})
 
 #admin.site.register(Clientes,clientes_tabla)
 admin.site.register(Eventos,eventos_tabla)

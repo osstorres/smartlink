@@ -7,21 +7,20 @@
 {% block breadcrumbs %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-
 &rsaquo; <span>Send email</span>
 </div>
 {% endblock %}
 
 {% block content %}
 <p>{% blocktrans %}Write your message here{% endblocktrans %}</p>
-<form method="POST" >{% csrf_token %}
+<form method="POST" action="{% url 'email' %}">{% csrf_token %}
     <div>
         <div>
             <p>{{ form.users.errors }}</p>
             <p>{{ form.users.label_tag }}</p>
             <p>
                 {% for user in form.users.initial %}
-                    {{ user.email }}{% if not forloop.last %},&nbsp;{% endif %}
+                    {{ user.correo }}{% if not forloop.last %},&nbsp;{% endif %}
                 {% endfor %}
             </p>
             <select name="users" multiple style="display: none">
@@ -36,12 +35,17 @@
             <p>{{ form.subject }}</p>
         </div>
         <div>
+                <p>{{ form.media }}</p>
             <p>{{ form.message.errors }}</p>
             <p>{{ form.message.label_tag }}</p>
             <p>{{ form.message }}</p>
+            
+            
         </div>
         <input type="submit" value="{% trans 'Send message' %}" />
-      
+        
     </div>
 </form>
+
+
 {% endblock %}

@@ -50,7 +50,7 @@ urlpatterns = [
     url(r'^historial/(?P<pk>\d+)/$',views.quitarevento,name="quitarevento"),
     
     url(r'^$',views.home,name="index"),
-    #url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
+    url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),
     #url(r'^login/$',views.login,name="login"),
     #url(r'^registro/$',views.registro,name="registro"),
     url(r'^login/$', LoginView.as_view(template_name='accounts/login.html'), name='login'),
