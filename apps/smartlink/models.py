@@ -26,6 +26,7 @@ class Eventos(models.Model):
     ,('Innovation & Bussines day','Innovation & Bussines day'),('OTRO','OTRO'),)
     TIPO_INVITACION_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
     ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papa/Mama Tec','Papa/Mama Tec'),('General','General'),)
+    PRIORIDAD = (('alta','alta'),('normal','normal'),('ninguna','ninguna'))
 
 
     id = models.AutoField(primary_key=True)
@@ -40,6 +41,7 @@ class Eventos(models.Model):
     tipo_evento = models.CharField(max_length = 200,choices=TIPO_EVENTO_CHOICES)
     concepto_pago = models.CharField(max_length = 300)
     registros = models.ManyToManyField(User, blank = True)
+    prioridad = models.CharField(max_length = 200,choices=PRIORIDAD,default=None)
     
     
     def get_registros(self):

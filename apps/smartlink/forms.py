@@ -7,8 +7,8 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from tinymce.widgets import TinyMCE
 from ckeditor.widgets import CKEditorWidget
 class SendEmailForm(forms.Form):
-    subject = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ('Subject')}))
-    message =  forms.CharField(widget=CKEditorWidget())
+    asunto = forms.CharField(widget=forms.TextInput(attrs={'placeholder': ('Asunto')}))
+    mensaje =  forms.CharField(widget=CKEditorWidget())
     users = forms.ModelMultipleChoiceField(label="Destinatarios",
                                            queryset=Clientes.objects.all(),
                                            widget=forms.SelectMultiple())

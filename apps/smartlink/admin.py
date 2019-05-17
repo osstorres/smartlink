@@ -32,7 +32,7 @@ class UserProfileAdmin(ImportExportModelAdmin):
     user_info.short_description = 'Info'
 
 
-    actions =['send_email']
+    actions =['enviar_correo']
 
 
 
@@ -53,7 +53,7 @@ class UserProfileAdmin(ImportExportModelAdmin):
         return [f for f in formats if f().can_import()]
 
 
-    def send_email(self, request, queryset):
+    def enviar_correo(self, request, queryset):
         form = SendEmailForm(initial={'users': queryset})
         
         return render(request, 'send_email.html', {'form': form})

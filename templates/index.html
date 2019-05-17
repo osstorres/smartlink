@@ -107,68 +107,64 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
+ 
 
+   
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome_area clearfix" id="home" style="background-image: url(static/img/bg-img/welcome-bg.png)">
         <div class="hero-slides owl-carousel">
             <!-- Single Hero Slides -->
+            {% for eventos_principal in eventos_smartlink %} 
+            {% if eventos_principal.prioridad == "alta"  %}
             <div class="single-hero-slide d-flex align-items-end justify-content-center">
+
+
                 <div class="hero-slide-content text-center">
-                    <h2>Evento prueba</h2>
-                    <h4>Más información</h4>
-                    <img class="slide-img" src="{% static 'img/bg-img/device.jpg' %}" alt="">
+                        <h2 style="margin-bottom:200px">{{eventos_principal.titulo}}</h2>
+                        <img src="{{eventos_principal.imagen_portada.url}}" style="width:600px;height:auto;margin-bottom:30%">
+           
+
+                    
+                    
+                       
+                    <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
+                            Más información
+
+                        </a>
+                    
                 </div>
             </div>
+            {% else %}
+            {% endif %}
+            {% endfor %}
             <!-- Single Hero Slides -->
-            <div class="single-hero-slide d-flex align-items-end justify-content-center">
-                <div class="hero-slide-content text-center">
-                    <h2>Evento prueba</h2>
-                    <h4>Registrate!!!</h4>
-                    <img class="slide-img" src="{% static 'img/bg-img/device.jpg' %}" alt="">
-                </div>
-            </div>
+          
         </div>
     </section>
     <!-- ***** Welcome Area End ***** -->
 
     <!-- ***** Service Area Start ***** -->
     
-    <section class="mosh-service-area clearfix">
+    <section class="mosh-service-area clearfix" style="margin-top:10%">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="mosh-service-slides owl-carousel">
+                            {% for eventos_normales in eventos_smartlink %} 
+                            {% if eventos_normales.prioridad == "normal"  %}
                         <!-- Single Service Area -->
                         <div class="single-service-area text-center">
-                            <h2>Enero</h2>
-                            <h4>Desayuno empresarial</h4>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
+                            <h2>{{eventos_normales.titulo}}</h2>
+                            <h4>{{eventos_normales.tipo_evento}}</h4>
+                            <a href="{% url 'evento' pk=eventos_normales.id %}"> 
+                                    Más información
+        
+                                </a>
                         </div>
                         <!-- Single Service Area -->
-                        <div class="single-service-area text-center">
-                            <h2>Enero</h2>
-                            <h4>Taller</h4>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
-                        </div>
-                        <!-- Single Service Area -->
-                        <div class="single-service-area text-center">
-                            <h2>Enero</h2>
-                            <h4>Conferencia</h4>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
-                        </div>
-                        <!-- Single Service Area -->
-                        <div class="single-service-area text-center">
-                            <h2>Enero</h2>
-                            <h4>Conferencia</h4>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
-                        </div>
-                        <!-- Single Service Area -->
-                        <div class="single-service-area text-center">
-                            <h2>Enero</h2>
-                            <h4>Desayuno empresarial</h4>
-                            <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul.</p>
-                        </div>
-                
+            {% else %}
+            {% endif %}
+            {% endfor %}
                     </div>
                 </div>
                 <!-- Discover More btn 

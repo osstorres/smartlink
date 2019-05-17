@@ -226,8 +226,8 @@ class SendUserEmails(FormView):
 
     def form_valid(self, form):
         users = form.cleaned_data['users']
-        subject = form.cleaned_data['subject']
-        message = form.cleaned_data['message']
+        subject = form.cleaned_data['asunto']
+        message = form.cleaned_data['mensaje']
         html_content = message
         print("COSITA BIEN HECHA VERDAD DE DIOS : ")
         for x in users:
@@ -235,7 +235,7 @@ class SendUserEmails(FormView):
             #send_mail(subject, message,'smartlink',[x.correo],fail_silently=False)
 
 
-            subject, from_email, to = 'hello', 'from@example.com', x.correo
+            subject, from_email, to = subject, 'SMART LINK', x.correo
             text_content = 'This is an important message.'
             
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])

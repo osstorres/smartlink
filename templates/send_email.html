@@ -7,18 +7,24 @@
 {% block breadcrumbs %}
 <div class="breadcrumbs">
 <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
-&rsaquo; <span>Send email</span>
+&rsaquo; <span>Enviar correo</span>
 </div>
 {% endblock %}
 
 {% block content %}
-<p>{% blocktrans %}Write your message here{% endblocktrans %}</p>
+<p>{% blocktrans %}Panel de correos{% endblocktrans %}</p>
+
+    <!-- Core Stylesheet -->
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+    <!-- Responsive CSS -->
+    <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
 <form method="POST" action="{% url 'email' %}">{% csrf_token %}
     <div>
         <div>
-            <p>{{ form.users.errors }}</p>
-            <p>{{ form.users.label_tag }}</p>
-            <p>
+            <p style="color:black">{{ form.users.errors }}</p>
+            <p style="color:black">{{ form.users.label_tag }}</p>
+            <p style="color:black">
                 {% for user in form.users.initial %}
                     {{ user.correo }}{% if not forloop.last %},&nbsp;{% endif %}
                 {% endfor %}
@@ -30,19 +36,19 @@
             </select>
         </div>
         <div>
-            <p>{{ form.subject.errors }}</p>
-            <p>{{ form.subject.label_tag }}</p>
-            <p>{{ form.subject }}</p>
+            <p style="color:black">{{ form.asunto.errors }}</p>
+            <p style="color:black">{{ form.asunto.label_tag }}</p>
+            <p style="color:black">{{ form.asunto }}</p>
         </div>
         <div>
-                <p>{{ form.media }}</p>
-            <p>{{ form.message.errors }}</p>
-            <p>{{ form.message.label_tag }}</p>
-            <p>{{ form.message }}</p>
+                <p style="color:black">{{ form.media }}</p>
+            <p style="color:black">{{ form.mensaje.errors }}</p>
+            <p style="color:black">{{ form.mensaje.label_tag }}</p>
+            <p style="color:black">{{ form.mensaje }}</p>
             
             
         </div>
-        <input type="submit" value="{% trans 'Send message' %}" />
+        <input type="submit"  class="btn btn-success" value="Enviar correos" />
         
     </div>
 </form>
