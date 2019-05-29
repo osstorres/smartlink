@@ -52,14 +52,23 @@
 								
 									
 										<div class="form-group">
-											<input type="checkbox" name="agree-term" onclick="validate()" id="agree-term" class="container" />
-											<label for="agree-term" class="label-agree-term"><span><span></span></span>Acepta los terminos y condiciones <a href="https://tec.mx/es/aviso-de-privacidad-para-participantes-y-expositores-congresos-y-simposiums" target="_blank" class="term-service">Terminos y condiciones</a></label>
+											
+												<div class="checkbox">
+												
+														<input type="checkbox" class="input-assumpte" onclick="validate()"  name="input-confidencial" id="input-confidencial">
+														
+														<label for="input-confidencial"></label>
+														
+														<div class="tag"><label><span ><span></span></span>Acepta los  <a href="https://tec.mx/es/aviso-de-privacidad-para-participantes-y-expositores-congresos-y-simposiums" target="_blank" class="term-service">Terminos y condiciones</a></label></div>
+													  </div>
+											
 										</div>
-
+										
+											  
 										<div class="row justify-content-center">
 												<button disabled="true" type="submit" style="cursor:pointer;" id="registroboton" class="btn btn-primary">Registrarme</button>
 											  </div>
-										
+									
 
 						
 								<p class="loginhere">
@@ -75,11 +84,52 @@
 			</body>
 			<script type="text/javascript">
 				function validate() {
-					if (document.getElementById('agree-term').checked) {
+					if (document.getElementById('input-confidencial').checked) {
 						document.getElementById("registroboton").disabled = false;
+			
 					} else {
 						document.getElementById("registroboton").disabled = true;
+
 					}
 				}
 				</script>
+				<style>
+			.checkbox {
+  margin: 0 0 1em 2em;
+}
+.checkbox .tag {
+  color: #595959;
+  display: block;
+  float: left;
+  font-weight: bold;
+  position: relative;
+  width: 270px;
+}
+.checkbox label {
+  display: inline;
+}
+.checkbox .input-assumpte {
+  display: none;
+}
+.input-assumpte + label {
+  -webkit-appearance: none;
+  background-color:white;
+  cursor: pointer;
+  border: 1px solid black;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  display: inline-block;
+  position: relative;
+}
+.input-assumpte:checked + label:after {
+  background-color:green;
+  color: green;
+  content: '\2714';
+  font-size: 10px;
+  left: 0px;
+  padding: 2px 8px 0px 2px;
+  position: absolute;
+  top: 0px;
+}
+				</style>
 </html>

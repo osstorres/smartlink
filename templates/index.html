@@ -52,17 +52,24 @@
                             <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
                                     {% if user.is_authenticated %}
                                 <ul class="navbar-nav animated" id="nav">
-                                        <li class="nav-item active"><a class="nav-link" >Bienvenido  {{ user }}</a></li>
+                                        <li class="nav-item"><a class="nav-link" >Bienvenido  {{ user }}</a></li>
                                     
 
                                    
                                     <li class="nav-item"><a class="nav-link" href="#eventos_para_mi">Eventos para mi</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="historial">Proximos eventos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="historial">Mis eventos</a></li>
+                                    
                                     <li class="nav-item"><a class="nav-link" href="profile">Mi perfil</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="historial">Sobre nosotros</a></li>
                                     <li class="nav-item"><a class="nav-link" href="logout">Cerrar sesion</a></li>
                                     <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+                                    {% if user.is_staff %}
+                                    <li class="nav-item"><a class="nav-link" href="admin">Panel de administración</a></li>
+                                    {% else %}
+                                    
+                                    {% endif %}
                                 </ul>
                              
                                 <!-- Search Form Area Start -->
@@ -77,11 +84,7 @@
                                     <a href="#" id="search-btn"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></a>
                                 </div>-->
                                 <!-- Login/Register btn -->
-                                {% if user.is_staff %}
-                                <li class="nav-item"><a class="nav-link" href="admin">Panel de administración</a></li>
-                                {% else %}
-                                
-                                {% endif %}
+                              
 
 
                                 {% else %}
