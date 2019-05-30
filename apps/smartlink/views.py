@@ -75,11 +75,13 @@ def view_profile(request, pk=None):
     return render(request, 'accounts/profile.html', args)
 
 def edit_profile(request):
+    
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
         profile_form = ClienteForm(request.POST, instance=request.user.clientes)
 
         if form.is_valid() or profile_form.is_valid():
+            
          
             form.save()
             profile_form.save()
@@ -126,6 +128,12 @@ def historial(request):
     
 
     return render(request, 'historial.html')
+
+
+def nosotros(request):
+    
+
+    return render(request, 'nosotros.html')
 
 def logout(request):
 
@@ -229,13 +237,13 @@ class SendUserEmails(FormView):
         subject = form.cleaned_data['asunto']
         message = form.cleaned_data['mensaje']
         html_content = message
-        print("COSITA BIEN HECHA VERDAD DE DIOS : ")
+        
         for x in users:
             print(x.correo)
             #send_mail(subject, message,'smartlink',[x.correo],fail_silently=False)
 
 
-            subject, from_email, to = subject, 'SMART LINK', x.correo
+            subject, from_email, to = subject, 'Tecnológico de Monterrey en Cuernavaca', x.correo
             text_content = 'This is an important message.'
             
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])

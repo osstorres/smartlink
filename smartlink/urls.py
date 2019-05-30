@@ -58,6 +58,7 @@ urlpatterns = [
     #url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('login')), name='logout'),
     url(r'^logout/$', LogoutView.as_view(next_page=reverse_lazy('index')), name='logout'),
     url(r'^historial/$', views.historial, name='historial'),
+    url(r'^nosotros/$', views.nosotros, name='nosotros'),
     #url(r'^login/$', login, {'template_name': 'accounts/login.html'}, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^register/$', views.register, name='register'),

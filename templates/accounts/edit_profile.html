@@ -108,9 +108,10 @@
         <div class="container">
                 <form method="post">
                     {% csrf_token %}
-                    <!-- {{ form.as_p }}-->
-             
+                    
+                    
                     {{profile_form|crispy}}
+                    {{ form.as_table }}
                     
                     <button type="submit"  style="cursor:pointer; margin:0 auto; display: block; margin-bottom: 50px;"  class="btn btn-primary">Actualizar</button>
                 </form>

@@ -33,86 +33,100 @@
 
     <!-- ***** Header Area Start ***** -->
     <header class="header_area clearfix">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <!-- Menu Area Start -->
-                <div class="col-12 h-100">
-                    <div class="menu_area h-100">
-                        <nav class="navbar h-100 navbar-expand-lg align-items-center">
-                                <a class="navbar-brand" href="/"><img src="{% static 'img/core-img/logo.png' %}" alt="logo"></a>
-
-                            <!-- Menu Area -->
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                            
-                    
-
-
-
-                            <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
-                                    {% if user.is_authenticated %}
-                                <ul class="navbar-nav animated" id="nav">
-                                        <li class="nav-item active"><a class="nav-link" >Bienvenido  {{ user }}</a></li>
-                                    <li class="nav-item active"><a class="nav-link" href="/">Inicio</a></li>
-                                    <li class="nav-item active"><a class="nav-link" href="edit_profile">Editar perfil</a></li>
-                                    
-                                   
-                                    <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesion</a></li>
-                                    <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
-                                </ul>
-                             
-                                <!-- Search Form Area Start -->
-                                <!--<div class="search-form-area animated">
-                                    <form action="#" method="post">
-                                        <input type="search" name="search" id="search" placeholder="Type keywords &amp; hit enter">
-                                        <button type="submit" class="d-none"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></button>
-                                    </form>
-                                </div>-->
-                                <!-- Search btn -->
-                                <!--div class="search-button">
-                                    <a href="#" id="search-btn"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></a>
-                                </div>-->
-                                <!-- Login/Register btn -->
-                                {% else %}
-                                <ul class="navbar-nav animated" id="nav">
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    <!-- Menu Area Start -->
+                    <div class="col-12 h-100">
+                        <div class="menu_area h-100">
+                            <nav class="navbar h-100 navbar-expand-lg align-items-center">
+                                    <a class="navbar-brand" href="/"><img src="{% static 'img/core-img/logo.png' %}" alt="logo"></a>
+                                <!-- Menu Area -->
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mosh-navbar" aria-controls="mosh-navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                                
+                        
+    
+    
+    
+                                <div class="collapse navbar-collapse justify-content-end" id="mosh-navbar">
+                                        {% if user.is_authenticated %}
+                                    <ul class="navbar-nav animated" id="nav">
+                                            <li class="nav-item active"><a class="nav-link" >Bienvenido  {{ user }}</a></li>
                                         <li class="nav-item active"><a class="nav-link" href="/">Inicio</a></li>
-                                     
-                                        <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
-                               
+    
+                                       
+                   
+                                        <li class="nav-item"><a class="nav-link" href="/profile">Mi perfil</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/logout">Cerrar sesion</a></li>
                                         <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
                                     </ul>
-
-                                <div class="login-register-btn">
-                                    <a href="login" >Iniciar sesion</a>
-                                    <a href="register">/ Registrarme</a>
+                                 
+                                    <!-- Search Form Area Start -->
+                                    <!--<div class="search-form-area animated">
+                                        <form action="#" method="post">
+                                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; hit enter">
+                                            <button type="submit" class="d-none"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></button>
+                                        </form>
+                                    </div>-->
+                                    <!-- Search btn -->
+                                    <!--div class="search-button">
+                                        <a href="#" id="search-btn"><img src="{% static 'img/core-img/search-icon.png' %}" alt="Search"></a>
+                                    </div>-->
+                                    <!-- Login/Register btn -->
+                                    {% if user.is_staff %}
+                                    <li class="nav-item"><a class="nav-link" href="/admin">Panel de administración</a></li>
+                                    {% else %}
+                                    
+                                    {% endif %}
+    
+    
+                                    {% else %}
+                                    <ul class="navbar-nav animated" id="nav">
+                                            <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
+                                         
+                                            <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
+                                   
+                                            <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
+                                        </ul>
+    
+                                    <div class="login-register-btn">
+                                        <a href="login" >Iniciar sesion</a>
+                                        <a href="register">/ Registrarme</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
-                                {% endif %}
-                            </div>
-                        </nav>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
     <!-- ***** Header Area End ***** -->
 
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome_area clearfix" id="home" style="background-image: url(/static/img/bg-img/welcome-bg.png); padding-top:150px;">
         
-
-
+    
 <div class="container">
-    <h2 style="color:white">Datos personales</h2>
-    <p style="color:white">Nombre de usuario: {{ user }}</p>
-    <p style="color:white">Nombre: {{ user.first_name }}</p>
-    <p style="color:white">Apellidos: {{ user.last_name }}</p>
-    <p style="color:white">Email: {{ user.email }}</p>
-    <p style="color:white">Estado : {{ user.clientes.estado}}</p>
-    <p style="color:white">ocupacion :{{user.clientes.ocupacion}}</p>
-    <p style="color:white">Relación con el Tec : {{user.clientes.relacion_tec}}</p>
+    <div class="workflow-content ml-15"></div>
 
-  
+    <h3 style="color:white">NUESTROS EVENTOS</h3>
+            
+
+
+        <h4></h4>
+            
+
+          
+    </div>
+    
+    
+    
+    <h4></h4>
+    
+    
+    
 
 </div>
 
