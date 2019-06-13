@@ -82,17 +82,17 @@
     
                                     {% else %}
                                     <ul class="navbar-nav animated" id="nav">
-                                            <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
+                                            <li class="nav-item active"><a class="nav-link" href="/">Inicio</a></li>
                                          
-                                            <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
+                                            
                                    
                                             <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                             <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
                                         </ul>
     
                                     <div class="login-register-btn">
-                                        <a href="login" >Iniciar sesion</a>
-                                        <a href="register">/ Registrarme</a>
+                                        <a href="/login" >Iniciar sesion</a>
+                                        <a href="/register">/ Registrarme</a>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -104,36 +104,53 @@
         </header>
     <!-- ***** Header Area End ***** -->
 
-    <!-- ***** Welcome Area Start ***** -->
-    <section class="welcome_area clearfix" id="home" style="background-image: url(/static/img/bg-img/welcome-bg.png); padding-top:150px;">
+   
+    
+        <!-- ***** Welcome Area Start ***** -->
         
-    
-<div class="container">
-    <div class="workflow-content ml-15"></div>
+    <section class="welcome_area clearfix" id="home" style="background-image: url(/static/img/bg-img/welcome-bg.png); padding-top:150px;">
+  
+                
+            <div class="hero-slides owl-carousel">
+                <!-- Single Hero Slides -->
+                
+                {% for eventos_principal in eventos_smartlink %} 
+                {% if eventos_principal.prioridad == "alta"  %}
 
-    <h3 style="color:white">NUESTROS EVENTOS</h3>
+                {% if eventos_principal.fecha|date:"Y-m-d" > date_now|date:"Y-m-d" %}
+                
+                {% else %}
+
+                <div class="single-hero-slide d-flex align-items-end justify-content-center">
+
+
+                        <div class="hero-slide-content text-center">
+                                <h2 style="margin-bottom:200px">{{eventos_principal.titulo}}</h2>
+                                <img src="{{eventos_principal.imagen_portada.url}}" style="width:600px;height:auto;margin-bottom:80%">
+                
+    
+                            
+                            
+                            
+                            <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
+                                    
+    
+                                </a>
+                            
+                        </div>
+                    </div>
+                {% endif %}
+                {% else %}
+                {% endif %}
+                {% endfor %}
+                <!-- Single Hero Slides -->
             
-
-
-        <h4></h4>
-            
-
-          
-    </div>
-    
-    
-    
-    <h4></h4>
-    
-    
-    
-
-</div>
-
-
+            </div>
+        </section>
+        
+    <section class="mosh-service-area clearfix" style="margin-top:10%">
            
-       
-    </section>
+        </section>
     <!-- ***** Welcome Area End ***** -->
 
     

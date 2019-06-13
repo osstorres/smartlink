@@ -26,6 +26,10 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000000
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+	
+DEFAULT_FROM_EMAIL = 'noreply@tec.com'
+ 
+
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'smartlinkenv@gmail.com'
 EMAIL_HOST_PASSWORD = 'SmartlinK98'
@@ -184,8 +188,8 @@ STATIC_URL = '/static/'
 #STATIC_ROOT = '/home/smartlinktec/smartlink/static'
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
+#MEDIA_ROOT = '/home/smartlinktec/smartlink/smartlink/media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'smartlink/media')
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_EXEMPT_URLS = (

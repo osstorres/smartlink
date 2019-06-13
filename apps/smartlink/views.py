@@ -15,7 +15,7 @@ from django.core.mail import send_mail
 from django.template.loader import get_template
 
 ######################ACCOUNTS##############################
-
+import datetime
 
 
 
@@ -51,6 +51,8 @@ def register(request):
         else:
             
             form = RegistrationForm()
+            print ("valido dentro del 1",form.is_valid())
+            print ("ERRORE DENTRO DE 1 : " ,form.errors )
          
             
             args = {'form': form}
@@ -58,9 +60,12 @@ def register(request):
    
     else:
         
-        form = RegistrationForm()
-       
+        print ("valido dentro del 2",form.is_valid())
+        print ("ERRORE DENTRO DE 2 : " ,form.errors)
+         
         args = {'form': form}
+        print (form.is_valid())
+        print (form.errors)
         return render(request, 'accounts/reg_form.html',args)
 
 def view_profile(request, pk=None):
@@ -132,8 +137,13 @@ def historial(request):
 
 def nosotros(request):
     
+    eventos_smartlink= Eventos.objects.all()
 
-    return render(request, 'nosotros.html')
+    
+    context = {'eventos_smartlink':eventos_smartlink,'date_now':datetime.datetime.now()}
+
+
+    return render(request,'nosotros.html',context)
 
 def logout(request):
 
@@ -159,12 +169,12 @@ def agregareventoacliente(request, pk=None):
         #user = User.objects.get(pku=pku)  
         #context = {'eventosss':eventosss}
     request.user.clientes.eventos.add(evento.id)
-    print("-----------------------ESTA COSITA-----------------------------")
+
     evento.registros.add(request.user.id)
     
-    print("-----------------------ESTA COSITA-----------------------------")
+
     cuerpo_mensaje = "REGISTRO EXITOSO AL EVENTO : "+ evento.titulo +"\nFECHA :" +str(evento.fecha) + "\nLUGAR: "+evento.lugar+"\n\nNO responda a este mensaje, es un envío automático\n\n"
-    send_mail('Confirmación evento',cuerpo_mensaje,'SMART LINK',[request.user.email],fail_silently=False)
+    send_mail('Confirmación evento',cuerpo_mensaje,'Tecnológico de Monterrey en Cuernavaca',[request.user.email],fail_silently=False)
 
     
 
@@ -243,7 +253,7 @@ class SendUserEmails(FormView):
             #send_mail(subject, message,'smartlink',[x.correo],fail_silently=False)
 
 
-            subject, from_email, to = subject, 'Tecnológico de Monterrey en Cuernavaca', x.correo
+            subject, from_email, to = subject, 'Tecnológico de Monterrey en Cuernavaca <do_not_reply@tec.com>', x.correo
             text_content = 'This is an important message.'
             
             msg = EmailMultiAlternatives(subject, text_content, from_email, [to])

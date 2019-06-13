@@ -92,7 +92,7 @@
                                         <li class="nav-item active"><a class="nav-link" href="#home">Inicio</a></li>
                                      
                                         <li class="nav-item"><a class="nav-link" href="#eventos_generales">Eventos generales</a></li>
-                               
+                                        <li class="nav-item"><a class="nav-link" href="nosotros">Sobre nosotros</a></li>
                                         <!-- <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
                                         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>-->
                                     </ul>
@@ -112,38 +112,38 @@
     <!-- ***** Header Area End ***** -->
  
 
-   
-    <!-- ***** Welcome Area Start ***** -->
-    <section class="welcome_area clearfix" id="home" style="background-image: url(static/img/bg-img/welcome-bg.png)">
-        <div class="hero-slides owl-carousel">
-            <!-- Single Hero Slides -->
-            {% for eventos_principal in eventos_smartlink %} 
-            {% if eventos_principal.prioridad == "alta"  %}
-            <div class="single-hero-slide d-flex align-items-end justify-content-center">
+    
+        <!-- ***** Welcome Area Start ***** -->
+        <section class="welcome_area clearfix" id="home" style="background-image: url(static/img/bg-img/welcome-bg.png)">
+            <div class="hero-slides owl-carousel">
+                <!-- Single Hero Slides -->
+                {% for eventos_principal in eventos_smartlink %} 
+                {% if eventos_principal.prioridad == "alta"  %}
+                <div class="single-hero-slide d-flex align-items-end justify-content-center">
 
 
-                <div class="hero-slide-content text-center">
-                        <h2 style="margin-bottom:200px">{{eventos_principal.titulo}}</h2>
-                        <img src="{{eventos_principal.imagen_portada.url}}" style="width:600px;height:auto;margin-bottom:30%">
-           
+                    <div class="hero-slide-content text-center">
+                            <h2 style="margin-bottom:200px">{{eventos_principal.titulo}}</h2>
+                            <img src="{{eventos_principal.imagen_portada.url}}" style="width:600px;height:auto;margin-bottom:30%">
+            
 
-                    
-                    
-                       
-                    <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
-                            Más información
+                        
+                        
+                        
+                        <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
+                                Más información
 
-                        </a>
-                    
+                            </a>
+                        
+                    </div>
                 </div>
+                {% else %}
+                {% endif %}
+                {% endfor %}
+                <!-- Single Hero Slides -->
+            
             </div>
-            {% else %}
-            {% endif %}
-            {% endfor %}
-            <!-- Single Hero Slides -->
-          
-        </div>
-    </section>
+        </section>
     <!-- ***** Welcome Area End ***** -->
 
     <!-- ***** Service Area Start ***** -->
@@ -673,7 +673,10 @@
                                 <h2>2.</h2>
                                 <div class="workflow-content ml-15">
                                         <img src="{% static 'img/core-img/fco.png' %}" alt="logo">
-                                    <h4>Francisco Hurtado</h4>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                        <h4>Francisco Hurtado</h4>
                                     <p>Director de Prácticas Digitales en Minsait México</p>
                                 </div>
                             </div>
@@ -694,8 +697,11 @@
                                 <h2>4.</h2>
                                 <div class="workflow-content ml-15">
                                         <img src="{% static 'img/core-img/mayte.png' %}" alt="logo">
-                                    <h4>Mayte Barba</h4>
-                                    <p>Consultora internacional de los programas Radical Collaboration y The Human Element</p>
+                                        <br/>
+                                        <br/>
+                                        <br/>
+                                    <h4>Su nombre</h4>
+                                    <p>Su descripcion</p>
                                 </div>
                             </div>
                         </div>
