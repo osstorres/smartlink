@@ -4,6 +4,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+<style>
+
+BODY { background: url(/static/logincss/index.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,25 +57,34 @@
 	<form method="post" class="login100-form validate-form">
 
 		
-		<span class="login100-form-title p-b-34">
+		<span class="login100-form-title p-b-34" style="color:white;
+		font-size: 30px;
+		">
 			Inicio de sesión
 		</span>
+		<div style="color:white;
+		font-size: 30px;
+		">
 		{% csrf_token %}
 		{{ form|crispy }}
 		
-		
+	</div>
 
 		<div class="container-login100-form-btn">
 
-			<input class="btn btn-primary" style="cursor:pointer" type="submit" value="ingresar">
+			<input class="btn btn-primary" style="cursor:pointer"  type="submit" value="ingresar">
 
 		</div>
 
 
 
-		<div class="w-full text-center">
+		<div class="w-full text-center" style="color:black;
+		font-size: 30px;
+		">
 				¿ Aún no tienes cuenta ? 
-			<a href="/register" class="txt3">
+			<a href="/register" class="txt3" style="color:white;
+			font-size: 30px;
+			">
 				Registrate
 			</a>
 		</div>
