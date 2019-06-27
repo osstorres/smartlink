@@ -99,18 +99,26 @@
 
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome_area clearfix" id="home" style="background-image: url(/static/img/bg-img/welcome-bg.png); padding-top:150px;">
-        
+        <style>
+    
+            p
+                    {
+                        color:white;
+                        font-size: 25px;
+                    }
+            
+            </style>
 
 
 <div class="container">
-    <h2 style="color:white">Datos personales</h2>
-    <p style="color:white">Nombre de usuario: {{ user }}</p>
-    <p style="color:white">Nombre: {{ user.first_name }}</p>
-    <p style="color:white">Apellidos: {{ user.last_name }}</p>
-    <p style="color:white">Email: {{ user.email }}</p>
-    <p style="color:white">Estado : {{ user.clientes.estado}}</p>
-    <p style="color:white">ocupacion :{{user.clientes.ocupacion}}</p>
-    <p style="color:white">Relación con el Tec : {{user.clientes.relacion_tec}}</p>
+    <h2 style="color:white; font-size: 40px;">Datos personales</h2>
+    <p>Usuario: {{ user }}</p>
+    <p>Nombre: {{ user.first_name }}</p>
+    <p>Apellidos: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Estado : {{ user.clientes.estado}}</p>
+    <p>Ocupación :{{user.clientes.ocupacion}}</p>
+    <p>Relación con el Tec : {{user.clientes.relacion_tec}}</p>
 
   
 

@@ -114,13 +114,7 @@
             <div class="hero-slides owl-carousel">
                 <!-- Single Hero Slides -->
                 
-                {% for eventos_principal in eventos_smartlink %} 
-                {% if eventos_principal.prioridad == "alta"  %}
-
-                {% if eventos_principal.fecha|date:"Y-m-d" > date_now|date:"Y-m-d" %}
-                
-                {% else %}
-
+              
                 <div class="single-hero-slide d-flex align-items-end justify-content-center">
 
 
@@ -130,19 +124,14 @@
                 
     
                             
-                            
-                            
-                            <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
+                        
                                     
     
                                 </a>
                             
                         </div>
                     </div>
-                {% endif %}
-                {% else %}
-                {% endif %}
-                {% endfor %}
+             
                 <!-- Single Hero Slides -->
             
             </div>

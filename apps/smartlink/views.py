@@ -36,9 +36,12 @@ from django.core.mail import EmailMultiAlternatives
 def register(request):
     if request.method =='POST':
         form = RegistrationForm(request.POST)
-        #profile_form = ClienteForm(request.POST)
+        #profile_form = ClienteForm(request.POST)7
+
         
         if form.is_valid(): #and profile_form.is_valid():
+               username = form.cleaned_data.get("username")
+               print("USUARIO REGISTRO:", username)
                form.save()
            
                
@@ -49,23 +52,24 @@ def register(request):
                #return redirect(reverse('smartlink:login'))
                #return render(request,'accounts/login.html')
         else:
-            
+            username = form.cleaned_data.get("username")
+            print("USUARIO REGISTRO fallidooo papppuuuuu:", username)
             form = RegistrationForm()
-            print ("valido dentro del 1",form.is_valid())
-            print ("ERRORE DENTRO DE 1 : " ,form.errors )
+            print ("valido dentro del 1")
+            print ("ERRORE DENTRO DE 1 : "  )
+            error = True
          
             
-            args = {'form': form}
+            args = {'form': form,'error':error}
             return render(request, 'accounts/reg_form.html', args)
    
     else:
-        
-        print ("valido dentro del 2",form.is_valid())
-        print ("ERRORE DENTRO DE 2 : " ,form.errors)
+        form = RegistrationForm()
+        print ("valido dentro del 2")
+        print ("ERRORE DENTRO DE 2 : " )
          
         args = {'form': form}
-        print (form.is_valid())
-        print (form.errors)
+      
         return render(request, 'accounts/reg_form.html',args)
 
 def view_profile(request, pk=None):
@@ -73,23 +77,33 @@ def view_profile(request, pk=None):
         user = User.objects.get(pk=pk)
         
         
+        
     else:
         user = request.user
+        print("CORREO USUARIO: " ,request.user.email)
+        request.user.clientes.correo = request.user.email
+        print("CORREO CLIENTE :", request.user.clientes.correo)
+        
         
     args = {'user': user}
     return render(request, 'accounts/profile.html', args)
 
 def edit_profile(request):
+    request.user.clientes.correo = request.user.email
+    request.user.clientes.nombre = request.user.first_name
+    request.user.clientes.apellidos = request.user.last_name
+ 
     
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
         profile_form = ClienteForm(request.POST, instance=request.user.clientes)
 
-        if form.is_valid() or profile_form.is_valid():
+        if form.is_valid() and profile_form.is_valid():
             
          
             form.save()
             profile_form.save()
+            #return render(request,"accounts/profile.html",{})
             return redirect('view_profile')
     else:
         form = EditProfileForm(instance=request.user)
@@ -122,6 +136,10 @@ def home(request):
 
 
     eventos_smartlink= Eventos.objects.all()
+    for i in eventos_smartlink:
+        print("MI INVITACION",i.tipo_invitacion)
+        
+    
 
 
     context = {'eventos_smartlink':eventos_smartlink}
@@ -130,9 +148,12 @@ def home(request):
     return render(request,'index.html',context)
 
 def historial(request):
-    
+    datenow = datetime.datetime.now()
+    datenow2 = datetime.datetime.today()
+    args = {'datenow':datenow}
+    print("mi fecha actual " ,datenow,datenow2)
 
-    return render(request, 'historial.html')
+    return render(request, 'historial.html',args)
 
 
 def nosotros(request):
@@ -183,7 +204,8 @@ def agregareventoacliente(request, pk=None):
         #User.empresa.add(eventosss)
         #User.clientes.save()
 
-    return render(request, 'historial.html')
+    #return render(request, 'historial.html')
+    return redirect('historial')
 
 
 
@@ -203,20 +225,20 @@ def agregareventoacliente(request, pk=None):
 def quitarevento(request, pk=None):
     print("-----------------------ESTA COSITA-----------------------------")
     print(request.user.clientes.eventos)
-    print(evento.id)
+    
     print("-----------------------ESTA COSITA-----------------------------")
     if pk:
         evento = Eventos.objects.get(pk=pk)
     print("-----------------------ESTA COSITA-----------------------------")
     print(request.user.clientes.eventos)
-    print(evento.id)
+    
     print("-----------------------ESTA COSITA-----------------------------")
         #user = User.objects.get(pku=pku)  
         #context = {'eventosss':eventosss}
     request.user.clientes.eventos.remove(evento.id)
     print("-----------------------ESTA COSITA-----------------------------")
     print(request.user.clientes.eventos)
-    print(evento.id)
+    
     print("-----------------------ESTA COSITA-----------------------------")
         
         

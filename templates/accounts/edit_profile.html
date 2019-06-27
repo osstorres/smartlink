@@ -22,6 +22,7 @@
 
     <!-- Core Stylesheet -->
     <link href="{% static 'style.css' %}" rel="stylesheet">
+   
 
     <!-- Responsive CSS -->
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet">
@@ -102,16 +103,15 @@
 
     <!-- ***** Welcome Area Start ***** -->
     <section class="welcome_area clearfix" id="home" style="background-image: url(/static/img/bg-img/welcome-bg.png); padding-top:150px;">
-        
-
+      
 
         <div class="container">
-                <form method="post">
+                <form style="color:black; font-size: 20px; font-family: sans-serif" method="post">
                     {% csrf_token %}
                     
-                    
-                    {{profile_form|crispy}}
                     {{ form.as_table }}
+                    {{profile_form|crispy }}
+                    
                     
                     <button type="submit"  style="cursor:pointer; margin:0 auto; display: block; margin-bottom: 50px;"  class="btn btn-primary">Actualizar</button>
                 </form>

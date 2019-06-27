@@ -2,6 +2,7 @@ from django import forms
 from .models import *
 from .choices import *
 from django import forms
+from django.forms.utils import ErrorList
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from tinymce.widgets import TinyMCE
@@ -19,7 +20,7 @@ class ReadOnlyPasswordHashWidget(forms.Widget):
         context = super().get_context(name, value, attrs)
         summary = []
         if not value or value.startswith(UNUSABLE_PASSWORD_PREFIX):
-            summary.append({'label': gettext("No password set.")})
+            summary.append({'label': gettext("")})
         else:
             try:
                 hasher = identify_hasher(value)
@@ -118,6 +119,8 @@ class RegistrationForm(UserCreationForm):
    
 
     
+ 
+
 
     def save(self, commit=True):
         user = super(RegistrationForm, self).save(commit=False)
@@ -138,6 +141,7 @@ class EditProfileForm(UserChangeForm):
         model = User
         fields = (
             #'email',
+            'username',
             
             #'last_name',
             #'password',

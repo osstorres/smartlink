@@ -47,7 +47,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^evento/(?P<pk>\d+)/$',views.evento,name="evento"),
     url(r'^historial/(?P<pk>\d+)/$',views.agregareventoacliente,name="agregareventoacliente"),
-    url(r'^historial/(?P<pk>\d+)/$',views.quitarevento,name="quitarevento"),
+    url(r'^historialn/(?P<pk>\d+)/$',views.quitarevento,name="quitarevento"),
     
     url(r'^$',views.home,name="index"),
     url(r'^email-users/$',views.SendUserEmails.as_view(),name="email"),

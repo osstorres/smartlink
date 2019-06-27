@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'smartlink.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-#'''
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -123,7 +123,7 @@ DATABASES = {
         'PORT' : '',
     }
 }
-'''
+#'''
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
@@ -184,6 +184,7 @@ TINYMCE_DEFAULT_CONFIG = {
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STATIC_URL = '/static/'
+
 
 #STATIC_ROOT = '/home/smartlinktec/smartlink/static'
 MEDIA_URL = '/media/'

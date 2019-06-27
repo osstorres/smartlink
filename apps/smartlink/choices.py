@@ -23,6 +23,8 @@ ESTADO_CHOICES = (('Aguascalientes','Aguascalientes'),('Baja California','Baja C
     ('Tlaxcala','Tlaxcala'),('Veracruz','Veracruz'),('Yucatan','Yucatan'),('Zacatecas','Zacatecas'),
     )
 RELACION_TEC_CHOICES = (('Alumno Profesional/Preparatoria','Alumno Profesional/Preparatoria'),('Exatec','Exatec'),('Alumno Maestria Tec','Alumno Maestria Tec'),
-    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Papa/Mama Tec','Papa/Mama Tec'),('Ninguna','Ninguna'),)
+    ('Incubado Tec','Incubado Tec'),('Consejero Tec','Consejero Tec'),('Empleado Tec','Empleado Tec'),('Padre/Madre Tec','Padre/Madre Tec'),('Ninguna','Ninguna'),('Exatec y Alumno Profesional/Preparatoria','Exatec y Alumno Profesional/Preparatoria'),
+    ('Exatec y Alumno Maestria Tec','Exatec y Alumno Maestria Tec'),('Exatec e Incubado Tec','Exatec e Incubado Tec'),('Exatec y Consejero Tec','Exatec y Consejero Tec'),('Exatec y Empleado Tec','Exatec y Empleado Tec'),
+    ('Exatec y Padre/Madre Tec','Exatec y Padre/Madre Tec'),('Incubado Tec y Consejero Tec','Incubado Tec y Consejero Tec'),('Incubado Tec y Empleado Tec','Incubado Tec y Empleado Tec'),)
 
 

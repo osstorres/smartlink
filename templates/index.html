@@ -119,8 +119,9 @@
                 <!-- Single Hero Slides -->
                 {% for eventos_principal in eventos_smartlink %} 
                 {% if eventos_principal.prioridad == "alta"  %}
+                {% if eventos_principal.fecha|date:"Y-m-d" > date_now|date:"Y-m-d" %}
                 <div class="single-hero-slide d-flex align-items-end justify-content-center">
-
+                        
 
                     <div class="hero-slide-content text-center">
                             <h2 style="margin-bottom:200px">{{eventos_principal.titulo}}</h2>
@@ -132,11 +133,17 @@
                         
                         <a style="font-size: 30px;" href="{% url 'evento' pk=eventos_principal.id %}"> 
                                 Más información
+                   
 
                             </a>
+                            
                         
                     </div>
                 </div>
+                {% else %}
+                {% endif %}
+
+
                 {% else %}
                 {% endif %}
                 {% endfor %}
@@ -235,110 +242,51 @@
                 </div>
                 <div class="col-12">
                     <div class="clients-logo-area d-sm-flex align-items-center justify-content-between">
-                        <!--<a href="#"><img src="{% static 'img/clients-img/1.png' %}" alt=""></a>
-                        <a href="#"><img src="{% static 'img/clients-img/2.png' %}" alt=""></a>
-                        <a href="#"><img src="{% static 'img/clients-img/3.png' %}" alt=""></a>
-                        <a href="#"><img src="{% static 'img/clients-img/4.png' %}" alt=""></a>
-                        <a href="#"><img src="{% static 'img/clients-img/5.png' %}" alt=""></a>-->
+                  
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- ***** Clients Area End ***** -->
-
-    <!-- ***** Features Area Start *****
-    <section class="mosh-features-area section_padding_100 clearfix">
-        <div class="container">
-            <div class="row justify-content-end">
-                <div class="col-12 col-md-6">
-                    <div class="section-heading">
-                        <p>clients</p>
-                        <h2>What you get if you start your business with us</h2>
-                    </div>
-                    <div class="features-content">
-                        <p>Etiam nec odio vestibulum est mattis effic iturut magna. Pellentesque sit am et tellus blandit. Etiam nec odio vestibul. Etiam nec odio vestibulum est mat tis effic iturut magna. Pellentesque sit amet tellus blandit. Etiam nec odio ves tibul. Nec odio vestibulum est mattis effic iturut magna. Pellente sque sita met tellus blandit. Etiam nec odio.</p>
-                        
-                        <div class="features-progress-bar mt-50">
-                            
-                            <div class="single_progress_bar mb-15 wow fadeInUp" data-wow-delay="0.2s">
-                                <p>Development</p>
-                                <div id="bar1" class="barfiller">
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                    <span class="fill" data-percentage="70"></span>
-                                </div>
-                            </div>
-                            
-                            <div class="single_progress_bar mb-15 wow fadeInUp" data-wow-delay="0.4s">
-                                <p>Design</p>
-                                <div id="bar2" class="barfiller">
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                    <span class="fill" data-percentage="90"></span>
-                                </div>
-                            </div>
-                            
-                            <div class="single_progress_bar mb-15 wow fadeInUp" data-wow-delay="0.6s">
-                                <p>SEO</p>
-                                <div id="bar3" class="barfiller">
-                                    <div class="tipWrap">
-                                        <span class="tip"></span>
-                                    </div>
-                                    <span class="fill" data-percentage="55"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="features-img">
-            <img src="{% static 'img/bg-img/features.png' %}" alt="">
-        </div>
-    </section>-->
-    <!-- ***** Feature Area End ***** -->
-
-    <!-- ***** Service Area Start ***** -->
     
 
- 
+
+
 <section class="mosh-more-services-area d-sm-flex clearfix" style="            overflow-y: scroll;">
+<!-- INICIO DE LA CONDICION   -->
+{% if user.clientes.relacion_tec == "Empleado Tec" %}
+{% for ev in eventos_smartlink %} 
+{% for ev_inv in ev.tipo_invitacion %} 
+{% if ev_inv == "Empleado Tec"  %}
+<div class="single-more-service-area" >
+    
+<div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+    <h4>{{ev.titulo}}</h4>
+    <a href="{% url 'evento' pk=ev.id %}"> 
+            Más información
 
-    <!-- INICIO DE LA CONDICION   -->
-        {% if user.clientes.relacion_tec == "Empleado Tec" %}
-            {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Empleado Tec"  %}
-        <div class="single-more-service-area" >
-                
-            <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
-                <img src="{% static 'img/core-img/trophy.png' %}" alt="">
-                <h4>{{ev.titulo}}</h4>
-                <a href="{% url 'evento' pk=ev.id %}"> 
-                        Más información
+        </a>
+ 
+</div>
+</div>
+{% else %}
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
 
-                    </a>
-             
-        </div>
-        </div>
-        {% else %}
-        {% endif %}
-        {% endfor %}
-        {% else %}
-        {% endif %}
-
-        <!-- FIN DE LA CONDICION   -->
+<!-- FIN DE LA CONDICION   -->
 
 
 
             <!-- INICIO DE LA CONDICION  2 -->
             {% if user.clientes.relacion_tec == "Alumno Profesional/Preparatoria" %}
             {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Alumno Profesional/Preparatoria"  %}
+            {% for ev_inv in ev.tipo_invitacion %} 
+            {% if ev_inv == "Alumno Profesional/Preparatoria"  %}
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
@@ -354,6 +302,7 @@
         {% else %}
         {% endif %}
         {% endfor %}
+        {% endfor %}
         {% else %}
         {% endif %}
 
@@ -362,8 +311,13 @@
 
             <!-- INICIO DE LA CONDICION   3-->
             {% if user.clientes.relacion_tec == "Exatec" %}
+            
             {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Exatec"  %}
+            
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            {% if ev_inv == "Exatec" %}
+            
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
@@ -377,6 +331,7 @@
         </div>
         {% else %}
         {% endif %}
+        {% endfor %}
         {% endfor %}
         {% else %}
         {% endif %}
@@ -387,7 +342,8 @@
             <!-- INICIO DE LA CONDICION  4 -->
             {% if user.clientes.relacion_tec == "Alumno Maestria Tec" %}
             {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Alumno Maestria Tec"  %}
+            {% for ev_inv in ev.tipo_invitacion %} 
+            {% if ev_inv == "Alumno Maestria Tec"  %}
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
@@ -402,6 +358,7 @@
         {% else %}
         {% endif %}
         {% endfor %}
+        {% endfor %}
         {% else %}
         {% endif %}
 
@@ -410,8 +367,9 @@
 
             <!-- INICIO DE LA CONDICION   5-->
             {% if user.clientes.relacion_tec == "Incubado Tec" %}
-            {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Incubado Tec"  %}
+            {% for ev in eventos_smartlink %}
+            {% for ev_inv in ev.tipo_invitacion %}  
+            {% if ev_inv == "Incubado Tec"  %}
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
@@ -425,6 +383,7 @@
         </div>
         {% else %}
         {% endif %}
+        {% endfor %}
         {% endfor %}
         {% else %}
         {% endif %}
@@ -436,7 +395,8 @@
             <!-- INICIO DE LA CONDICION 6  -->
             {% if user.clientes.relacion_tec == "Consejero Tec" %}
             {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Consejero Tec"  %}
+            {% for ev_inv in ev.tipo_invitacion %} 
+            {% if ev_inv == "Consejero Tec"  %}
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
@@ -450,6 +410,7 @@
         </div>
         {% else %}
         {% endif %}
+        {% endfor %}
         {% endfor %}
         {% else %}
         {% endif %}
@@ -460,14 +421,18 @@
 
 
             <!-- INICIO DE LA CONDICION  7 -->
-            {% if user.clientes.relacion_tec == "Papá/Mamá Tec" %}
+            {% if user.clientes.relacion_tec == "Padre/Madre Tec" %}
             {% for ev in eventos_smartlink %} 
-            {% if ev.tipo_invitacion == "Papá/Mamá Tec"  %}
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            {% if ev_inv == "Padre/Madre Tec"  %}
+            
         <div class="single-more-service-area" >
                 
             <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
                 <img src="{% static 'img/core-img/trophy.png' %}" alt="">
                 <h4>{{ev.titulo}}</h4>
+                
                 <a href="{% url 'evento' pk=ev.id %}"> 
                         Más información
 
@@ -476,6 +441,147 @@
         </div>
         {% else %}
         {% endif %}
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
+
+
+
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec y Alumno Profesional/Preparatoria" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Alumno Profesional/Preparatoria" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
+
+
+
+
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec y Alumno Maestria Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Alumno Maestria Tec" %}
+            
+            
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
+
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec e Incubado Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Incubado Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec y Consejero Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Consejero Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
         {% endfor %}
         {% else %}
         {% endif %}
@@ -487,9 +593,147 @@
 
 
 
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec y Empleado Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Empleado Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
 
 
 
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Exatec y Padre/Madre Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Exatec" or ev_inv == "Padre/Madre Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
+
+
+
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Incubado Tec y Consejero Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Consejero Tec" or ev_inv == "Incubado Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
+
+
+
+
+
+      
+            <!-- INICIO DE LA CONDICIONes dobles -->
+            {% if user.clientes.relacion_tec == "Incubado Tec y Empleado Tec" %}
+            {% for ev in eventos_smartlink %} 
+            {% for ev_inv in ev.tipo_invitacion %} 
+            
+            
+            {% if ev_inv == "Empleado Tec" or ev_inv == "Incubado Tec" %}
+            
+            
+            
+            <div class="single-more-service-area" >
+                
+                <div class="more-service-content text-center wow fadeInUp" data-wow-delay=".1s"> 
+                    <img src="{% static 'img/core-img/trophy.png' %}" alt="">
+                    <h4>{{ev.titulo}}</h4>
+                    <a href="{% url 'evento' pk=ev.id %}"> 
+                            Más información
+    
+                        </a>
+            </div>
+            </div>  
+        
+        
+        {% endif %}
+    
+        {% endfor %}
+        {% endfor %}
+        {% else %}
+        {% endif %}
+
+        <!-- FIN DE LA CONDICION   -->
     </section>
     {% else %}
     {% endif %}
@@ -508,18 +752,6 @@
                 </div>
             </div>
         </div>
-<!--
-        <div class="mosh-projects-menu">
-            <div class="text-center portfolio-menu">
-                <p class="active" data-filter="*">All</p>
-                <p data-filter=".gd">Graphic Design</p>
-                <p data-filter=".bi">Brand Identity</p>
-                <p data-filter=".pho">Photography</p>
-                <p data-filter=".wd">Web Design</p>
-                <p data-filter=".pc">Printing Colaterall</p>
-            </div>
-        </div>
--->
 
 
         
@@ -527,7 +759,8 @@
         <div class="mosh-portfolio">
             <!-- Single gallery Item Start -->
             {% for eventos_generales in eventos_smartlink %} 
-            {% if eventos_generales.tipo_invitacion == "General"  %}
+            {% for ev_inv in eventos_generales.tipo_invitacion %} 
+            {% if ev_inv == "General"  %}
             <div class="single_gallery_item gd">
                 <img src="{{eventos_generales.imagen_portada.url}}">
                 
@@ -549,82 +782,10 @@
             
             {% endif %}
             {% endfor %}
+            {% endfor %}
 
           
 
-
-    <!-- 
-         
-            <div class="single_gallery_item bi">
-                <img src="{% static 'img/portfolio-img/2.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item gd bi">
-                <img src="{% static 'img/portfolio-img/3.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item pho">
-                <img src="{% static 'img/portfolio-img/4.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item pho">
-                <img src="{% static 'img/portfolio-img/5.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item wd pc">
-                <img src="{% static 'img/portfolio-img/6.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item wd">
-                <img src="{% static 'img/portfolio-img/7.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-         
-            <div class="single_gallery_item pc">
-                <img src="{% static 'img/portfolio-img/8.jpg' %}" alt="">
-                <div class="gallery-hover-overlay d-flex align-items-center justify-content-center">
-                    <div class="port-hover-text text-center">
-                            <h4>{{ev.titulo}}</h4>
-                            <a href="#">Más información</a>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
         
     </section>
