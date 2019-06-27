@@ -130,7 +130,7 @@
 
                       <tr>
                             
-                    {% if datenow.year <= cv.fecha.year and datenow.month <= cv.fecha.month %}  
+                   
                         <td style="color:white">{{cv.titulo}}</td>
                         <td style="color:white"> {{cv.fecha}}</td>
                         <td style="color:white"> {{cv.lugar}}</td>
@@ -138,10 +138,7 @@
                       
                         
                     
-                        
-             
-                   {% else %}
-                   {% endif %}
+           
                   
                      
                     </tbody>
@@ -155,57 +152,7 @@
 
           
     </div>
-    
-    <div class="container">
-        <div class="workflow-content ml-15"></div>
-    
-        <h3 style="color:white">EVENTOS PASADOS</h3>
-                <table class="table table-striped">
-                        <thead>
-                          <tr>
-                            
-                            <th scope="col" style="color:white">Evento</th>
-                            <th scope="col" style="color:white">Fecha</th>
-                            <th scope="col" style="color:white">Lugar</th>
-                          <!--  <th scope="col" style="color:white">Eliminar de mis eventos</th>-->
-       
-                          </tr>
-                        </thead>
-                        {% for cv in user.clientes.eventos.all %}
-                    
-                        <tbody>
-    
-                          <tr>
-                                
-                            {% if datenow.year >= cv.fecha.year and datenow.month >= cv.fecha.month %}  
-                           
-                       
-                            
-                            
-                            <td style="color:white">{{cv.titulo}}</td>
-                            <td style="color:white"> {{cv.fecha}}</td>
-                            <td style="color:white"> {{cv.lugar}}</td>
-                           <!-- <td> <input type="button"  style="cursor:pointer" class="btn btn-danger" value="Eliminar   " onclick="window.location.href='{% url 'quitarevento' pk=cv.id %}'" /> </td>-->
-                        
-                            
-                   
-                        
-                       {% else %} 
-                       {% endif %}
-                      
-                         
-                        </tbody>
-                       
-                        {% endfor %}
-                      </table>
-    
-    
-            <h4></h4>
-                
-    
-              
-        </div>
-        
+
     
     <h4></h4>
     
